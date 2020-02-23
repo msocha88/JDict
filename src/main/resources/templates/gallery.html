@@ -5,11 +5,16 @@
     <title>Gallery</title>
 </head>
 <body>
-
+<div th:text="${user.name}"></div>
 
 <div th:each="entry:${entries}">
+
     <div th:text="${entry.content}"></div>
-<!--    <div th:text="${entry.user.username}"></div>-->
+    <div th:text="${entry.userEntry.userName}"></div>
+
+    <div th:if="${entry.userEntry.id} == ${user.id}">
+        <a th:href="@{'/entry/delete/' + ${entry.id}}">DELETE</a>
+    </div>
 </div>
 
 

@@ -5,4 +5,5 @@ import pl.micsoc.dictionary.model.Entry;
 
 public interface EntryRepository extends JpaRepository<Entry, Long> {
 
+    Entry findEntryById(Long id);
 }

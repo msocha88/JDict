@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import pl.micsoc.dictionary.model.Entry;
+import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.repository.EntryRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 
@@ -48,8 +49,28 @@ public class EntryController {
     public String showEntries(ModelMap modelMap) {
 
         modelMap.put("entries", entryRepository.findAll());
-        modelMap.put("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+
+            modelMap.put("user",userRepository.findByUserName(((UserDetails) principal).getUsername()));
+        } else {
+            modelMap.put("user",userRepository.findByUserName(principal.toString()));
+        }
 
         return "gallery";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteEntry(@PathVariable String id) {
+
+//        System.out.println(id);
+        Long longid = Long.parseLong(id);
+
+        entryRepository.delete(entryRepository.findEntryById(longid));
+
+        return "redirect:/entry/show";
+
     }
 }
