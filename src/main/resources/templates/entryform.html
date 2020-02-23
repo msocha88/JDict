@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Please input entry</title>
+</head>
+<body>
+
+
+<form th:action="@{/entry/add}" th:object="${entry}" method="post">
+
+    <input type="text" th:field="*{content}">
+    <input type="submit" value="go!">
+</form>
+
+</body>
+</html>

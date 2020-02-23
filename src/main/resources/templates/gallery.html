@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+</head>
+<body>
+
+
+<div th:each="entry:${entries}">
+    <div th:text="${entry.content}"></div>
+<!--    <div th:text="${entry.user.username}"></div>-->
+</div>
+
+
+</body>
+</html>
