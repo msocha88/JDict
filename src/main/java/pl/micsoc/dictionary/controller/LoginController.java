@@ -10,14 +10,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import pl.micsoc.dictionary.model.Role;
 import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.service.UserService;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private UserService userService;
+
+
 
     @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login(){

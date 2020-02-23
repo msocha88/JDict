@@ -20,4 +20,10 @@ public class Role {
     private int id;
     @Column(name = "role")
     private String role;
+
+    public Role(String role) {
+        this.role = role;
+    }
+
+
 }
