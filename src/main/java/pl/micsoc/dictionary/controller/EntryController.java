@@ -10,6 +10,7 @@ import pl.micsoc.dictionary.model.Entry;
 import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.repository.EntryRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
+import pl.micsoc.dictionary.service.CategoryService;
 
 @Controller
 @RequestMapping("/entry")
@@ -21,10 +22,14 @@ public class EntryController {
     @Autowired
     EntryRepository entryRepository;
 
+    @Autowired
+    CategoryService categoryService;
+
     @GetMapping("/add")
     public String addEntry(ModelMap modelMap) {
 
         modelMap.put("entry", new Entry());
+        modelMap.put("categories", categoryService.allCategories());
         return "entryform";
 
     }

@@ -9,7 +9,14 @@
 
 <form th:action="@{/entry/add}" th:object="${entry}" method="post">
 
+    <label>Tytuł</label>
+    <input type="text" th:field="*{title}">
+    <label>Treść</label>
     <input type="text" th:field="*{content}">
+    <select th:field = "*{category}">
+    <option th:each="category: ${categories}"
+            th:value="${category}" th:text="${category.name}"></option>
+    </select>
     <input type="submit" value="go!">
 </form>
 
