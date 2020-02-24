@@ -25,4 +25,7 @@ public class Entry {
     @ManyToOne
     private User userEntry;
 
+    @Transient
+    private String selectedCategory;
+
 }

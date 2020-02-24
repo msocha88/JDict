@@ -27,4 +27,21 @@ public class CategoryService {
         return new HashSet<>(categoryRepository.findAll());
     }
 
+    public Category findByName(Category category) {
+        return categoryRepository.findByName(category.getName());
+    }
+
+    public Category findFromThymeleaf(String selectedCategory) {
+
+        String[] fields = selectedCategory.split(",");
+
+        for (String field : fields) {
+            System.out.println(field);
+            if (field.startsWith(" name=")) {
+                return categoryRepository.findByName(field.replaceAll(" name=",""));
+            }
+        }
+
+        return null;
+    }
 }

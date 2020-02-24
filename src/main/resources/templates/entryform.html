@@ -13,7 +13,7 @@
     <input type="text" th:field="*{title}">
     <label>Treść</label>
     <input type="text" th:field="*{content}">
-    <select th:field = "*{category}">
+    <select th:field = "*{selectedCategory}">
     <option th:each="category: ${categories}"
             th:value="${category}" th:text="${category.name}"></option>
     </select>

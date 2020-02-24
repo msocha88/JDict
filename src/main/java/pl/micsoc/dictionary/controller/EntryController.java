@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import pl.micsoc.dictionary.model.Entry;
-import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.repository.EntryRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 import pl.micsoc.dictionary.service.CategoryService;
@@ -30,21 +29,25 @@ public class EntryController {
 
         modelMap.put("entry", new Entry());
         modelMap.put("categories", categoryService.allCategories());
-        return "entryform";
 
+        return "entryform";
     }
 
 
     @PostMapping("/add")
     public String entryAdded(@ModelAttribute("entry") Entry entry) {
 
+        System.out.println(entry.getSelectedCategory());
+
+        entry.setCategory(categoryService.findFromThymeleaf(entry.getSelectedCategory()));
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
+
             entry.setUserEntry(userRepository.findByUserName(((UserDetails) principal).getUsername()));
         } else {
             String username = principal.toString();
         }
-
         entryRepository.save(entry);
         return "entryadded";
     }
@@ -54,7 +57,6 @@ public class EntryController {
     public String showEntries(ModelMap modelMap) {
 
         modelMap.put("entries", entryRepository.findAll());
-
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
