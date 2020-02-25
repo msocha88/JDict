@@ -33,14 +33,7 @@ public class CategoryService {
 
     public Category findFromThymeleaf(String selectedCategory) {
 
-        String[] fields = selectedCategory.split(",");
-
-        for (String field : fields) {
-            System.out.println(field);
-            if (field.startsWith(" name=")) {
-                return categoryRepository.findByName(field.replaceAll(" name=",""));
-            }
-        }
+        categoryRepository.findByName(selectedCategory);
 
         return null;
     }

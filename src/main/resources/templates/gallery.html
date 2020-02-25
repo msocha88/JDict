@@ -11,7 +11,7 @@
 
     <div th:text="${entry.content}"></div>
     <div th:text="${entry.userEntry.userName}"></div>
-    <div th:text="${entry.category.name}"></div>
+<!--    <div th:text="${entry.category.name}"></div>-->
     <div th:if="${entry.userEntry.id} == ${user.id}">
         <a th:href="@{'/entry/delete/' + ${entry.id}}">DELETE</a>
     </div>
