@@ -33,8 +33,6 @@ public class CategoryService {
 
     public Category findFromThymeleaf(String selectedCategory) {
 
-        categoryRepository.findByName(selectedCategory);
-
-        return null;
+        return categoryRepository.findByName(selectedCategory);
     }
 }

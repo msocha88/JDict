@@ -37,8 +37,6 @@ public class EntryController {
     @PostMapping("/add")
     public String entryAdded(@ModelAttribute("entry") Entry entry) {
 
-        System.out.println(entry.getSelectedCategory());
-
         entry.setCategory(categoryService.findFromThymeleaf(entry.getSelectedCategory()));
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
