@@ -6,6 +6,12 @@
 </head>
 <body>
 
+<header>
+    <div th:replace="fragments/header :: header"/>
+</header>
+
+
+<main>
 
 <form th:action="@{/entry/add}" th:object="${entry}" method="post">
 
@@ -13,12 +19,20 @@
     <input type="text" th:field="*{title}">
     <label>Treść</label>
     <input type="text" th:field="*{content}">
-    <select th:field = "*{selectedCategory}">
-    <option th:each="category: ${categories}"
-            th:value="${category.name}" th:text="${category.name}"></option>
+    <select th:field="*{selectedCategory}">
+        <option th:each="category: ${categories}"
+                th:value="${category.name}" th:text="${category.name}"></option>
     </select>
     <input type="submit" value="Add">
 </form>
+
+</main>
+
+
+<footer>
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+
 
 </body>
 </html>

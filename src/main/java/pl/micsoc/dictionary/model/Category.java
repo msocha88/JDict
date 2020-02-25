@@ -20,7 +20,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<Entry> entries;
+    private Set<Entry> entries;
 
     public Category(String name) {
         this.name = name;

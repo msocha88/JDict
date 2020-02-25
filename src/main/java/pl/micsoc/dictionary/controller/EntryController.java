@@ -44,7 +44,7 @@ public class EntryController {
 
             entry.setUserEntry(userRepository.findByUserName(((UserDetails) principal).getUsername()));
         } else {
-            String username = principal.toString();
+           entry.setUserEntry(userRepository.findByUserName(principal.toString()));
         }
         entryRepository.save(entry);
         return "entryadded";
