@@ -47,6 +47,8 @@ public class EntryController {
            entry.setUserEntry(userRepository.findByUserName(principal.toString()));
         }
         entryRepository.save(entry);
+
+        System.out.println("hahahaha");
         return "entryadded";
     }
 

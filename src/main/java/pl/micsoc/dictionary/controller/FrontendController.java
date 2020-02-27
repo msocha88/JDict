@@ -9,8 +9,10 @@ public class FrontendController {
 
     @GetMapping("/")
     public String sayElo() {
-        return "redirect:/entry/show";
+        return "/entry/show";
     }
+
+
 
 
 }

@@ -1,0 +1,18 @@
+body {
+ background-color: lightblue;
+}
+
+main{
+background-color: Red;
+}
+
+
+header, footer {
+background-color: Green;
+color: White;
+}
+
+.menu item {
+float: left;
+padding: 10px;
+}
