@@ -1,11 +1,11 @@
-body {
+body{
  background-color: lightblue;
+ color: red;
 }
 
 main{
 background-color: Red;
 }
-
 
 header, footer {
 background-color: Green;

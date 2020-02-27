@@ -9,7 +9,7 @@ public class FrontendController {
 
     @GetMapping("/")
     public String sayElo() {
-        return "/entry/show";
+        return "gallery";
     }
 
 
