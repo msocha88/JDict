@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -18,6 +20,8 @@ public class Entry {
     private String title;
 
     private String content;
+
+    private Date date;
 
     @ManyToOne
     private Category category;

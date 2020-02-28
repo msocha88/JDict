@@ -1,0 +1,21 @@
+
+.item a:link,.item a:visited {
+  background-color: black;
+  color: white;
+  padding: 4px 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.item a:hover,.item a:active {
+  background-color: white;
+  color: black;
+}
+
+.navbar-nav li{
+  text-align: center;
+  display: inline-block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;}

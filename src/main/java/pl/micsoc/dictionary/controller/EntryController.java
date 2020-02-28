@@ -11,6 +11,8 @@ import pl.micsoc.dictionary.repository.EntryRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 import pl.micsoc.dictionary.service.CategoryService;
 
+import java.sql.Date;
+
 @Controller
 @RequestMapping("/entry")
 public class EntryController {
@@ -38,13 +40,13 @@ public class EntryController {
     public String entryAdded(@ModelAttribute("entry") Entry entry) {
 
         entry.setCategory(categoryService.findFromThymeleaf(entry.getSelectedCategory()));
-
+        entry.setDate(new Date(System.currentTimeMillis()));
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
 
             entry.setUserEntry(userRepository.findByUserName(((UserDetails) principal).getUsername()));
         } else {
-           entry.setUserEntry(userRepository.findByUserName(principal.toString()));
+            entry.setUserEntry(userRepository.findByUserName(principal.toString()));
         }
         entryRepository.save(entry);
 
@@ -61,9 +63,9 @@ public class EntryController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
 
-            modelMap.put("user",userRepository.findByUserName(((UserDetails) principal).getUsername()));
+            modelMap.put("user", userRepository.findByUserName(((UserDetails) principal).getUsername()));
         } else {
-            modelMap.put("user",userRepository.findByUserName(principal.toString()));
+            modelMap.put("user", userRepository.findByUserName(principal.toString()));
         }
 
         return "gallery";

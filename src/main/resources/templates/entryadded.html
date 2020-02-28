@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>thx</title>
+    <div th:replace="fragments/menu :: menu-css"/>
 </head>
 <body>
-thanks
+<header>
+    <div th:replace="fragments/menu :: menu"/>
+</header>
+<main>
+<a href="/entry/add">Dodaj kolejny</a>
+</main>
+<footer>
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
 </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+
+    <div th:fragment="menu-css">
+        <!-- this is header-css -->
+
+        <link rel="stylesheet" th:href="@{/css/menu.css}"/>
+    </div>
+</head>
+<body>
+<div th:fragment="menu">
+    <!-- this is header -->
+    <nav class="navbar navbar-inverse">
+<!--        <div class="container">-->
+<!--            <div class="navbar-header">-->
+<!--                <a class="navbar-brand" th:href="@{/}">J Dict</a>-->
+<!--            </div>-->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li> <div class="item"><a th:href="@{/entry/show}">Home</a></div></li>
+                    <li>   <div class="item"><a th:href="@{/entry/add}">Dodaj wpis</a></div></li>
+                    <li>  <div class="item"><a th:href="@{/login}">Login</a></div></li>
+                    <li>   <div class="item"><a th:href="@{/registration}">Registration</a></div></li>
+                </ul>
+            </div>
+<!--        </div>-->
+    </nav>
+</div>
+
+</body>
+</html>
