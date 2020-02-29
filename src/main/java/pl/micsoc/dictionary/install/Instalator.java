@@ -34,8 +34,11 @@ public class Instalator implements CommandLineRunner {
         roleService.save(new Role("ROLE_MODERATOR"));
         roleService.save(new Role("ROLE_ADMIN"));
 
-        categoryService.save(new Category("Definicja"));
-        categoryService.save(new Category("Pytanie"));
+        categoryService.save(new Category("Kolekcje"));
+        categoryService.save(new Category("Zmienne"));
+        categoryService.save(new Category("Funkcje"));
+        categoryService.save(new Category("Inne"));
+
 
         User user1 = new User();
         user1.setName("Michał");

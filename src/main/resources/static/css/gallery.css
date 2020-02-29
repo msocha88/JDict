@@ -19,3 +19,9 @@
  border-width: 1px;
  border-color:black;
  }
+.user-name{
+float:left;}
+.date{
+float:right;}
+.category{
+clear:both;}

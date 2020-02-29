@@ -16,6 +16,18 @@
 .navbar-nav li{
   text-align: center;
   display: inline-block;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;}
+
+}
+
+
+img.logo{
+width: 7%;
+float: left;
+padding: 10px;
+}
+
+
+ .container{
+ overflow: auto;
+ background-color:black;
+}
