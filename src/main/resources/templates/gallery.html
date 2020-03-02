@@ -32,6 +32,9 @@
         <div class="delete-btn" th:if="${entry.userEntry.id} == ${user.id}">
             <a th:href="@{'/entry/delete/' + ${entry.id}}">Usuń</a>
         </div>
+        <div class="delete-btn" th:if="${entry.userEntry.id} == ${user.id}">
+            <a th:href="@{'/entry/edit/' + ${entry.id}}">Edytuj</a>
+        </div>
 
     </div>
 </main>

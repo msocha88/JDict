@@ -32,4 +32,5 @@ padding: 10px;
  .container{
  overflow: auto;
  background-color:black;
+ color: white;
 }

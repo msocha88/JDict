@@ -74,12 +74,36 @@ public class EntryController {
     @GetMapping("/delete/{id}")
     public String deleteEntry(@PathVariable String id) {
 
-//        System.out.println(id);
         Long longid = Long.parseLong(id);
 
         entryRepository.delete(entryRepository.findEntryById(longid));
 
         return "redirect:/entry/show";
 
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editEntry(@PathVariable String id, ModelMap modelMap) {
+
+        Long longid = Long.parseLong(id);
+
+        modelMap.put("entry", entryRepository.findEntryById(longid));
+        modelMap.put("categories", categoryService.allCategories());
+
+        return "editEntry";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String entryEdited(@ModelAttribute Entry newEntry) {
+
+        Entry entry = entryRepository.findEntryById(newEntry.getId());
+
+        entry.setTitle(newEntry.getTitle());
+        entry.setContent(newEntry.getContent());
+        entry.setCategory(categoryService.findFromThymeleaf(newEntry.getSelectedCategory()));
+
+        entryRepository.save(entry);
+
+        return "redirect:/entry/show";
     }
 }
