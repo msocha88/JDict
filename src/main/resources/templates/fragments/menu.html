@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
@@ -21,6 +21,8 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li> <div class="item"><a th:href="@{/entry/show}">Pokaż wpisy</a></div></li>
+                    <li> <div sec:authorize="isAuthenticated()"><a th:href="@{'/user/' +
+                    ${#httpServletRequest.remoteUser}}">Moje wpisy</a> </div></li>
                     <li>   <div class="item"><a th:href="@{/entry/add}">Dodaj wpis</a></div></li>
                     <li>  <div class="item"><a th:href="@{/login}">Zaloguj się</a></div></li>
                     <li>   <div class="item"><a th:href="@{/registration}">Rejestracja</a></div></li>

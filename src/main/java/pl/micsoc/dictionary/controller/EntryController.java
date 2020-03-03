@@ -41,16 +41,18 @@ public class EntryController {
 
         entry.setCategory(categoryService.findFromThymeleaf(entry.getSelectedCategory()));
         entry.setDate(new Date(System.currentTimeMillis()));
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
 
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
             entry.setUserEntry(userRepository.findByUserName(((UserDetails) principal).getUsername()));
+
         } else {
             entry.setUserEntry(userRepository.findByUserName(principal.toString()));
+
         }
         entryRepository.save(entry);
 
-        System.out.println("hahahaha");
         return "entryadded";
     }
 
@@ -74,9 +76,9 @@ public class EntryController {
     @GetMapping("/delete/{id}")
     public String deleteEntry(@PathVariable String id) {
 
-        Long longid = Long.parseLong(id);
+        Long longId = Long.parseLong(id);
 
-        entryRepository.delete(entryRepository.findEntryById(longid));
+        entryRepository.delete(entryRepository.findEntryById(longId));
 
         return "redirect:/entry/show";
 

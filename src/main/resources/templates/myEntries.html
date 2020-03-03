@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>My Entries</title>
+</head>
+<body>
+<div class="entry" th:each="entry:${entries}">
+
+    <div class="topbar">
+        <div class="user-name" th:text="${entry.userEntry.userName}"></div>
+        <div class="date" th:text="${entry.date}"></div>
+    </div>
+    <div class="category" th:text="${entry.category.name}"></div>
+    <div class="entry content">
+        <strong th:text="${entry.title}">Title</strong> -
+        <span th:text="${entry.content}"></span>
+    </div>
+    <div class="delete-btn">
+        <a th:href="@{'/entry/delete/' + ${entry.id}}">Usuń</a>
+    </div>
+    <div class="delete-btn">
+        <a th:href="@{'/entry/edit/' + ${entry.id}}">Edytuj</a>
+    </div>
+
+</div>
+</body>
+</html>
