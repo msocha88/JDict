@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Gallery</title>
@@ -16,7 +16,7 @@
 
 <main>
 
-    <div th:text="|Witaj ${user.name}|"></div>
+<!--    <div th:if="${user.name}" th:text="|Witaj ${user.name}|"></div>-->
 
     <div class="entry" th:each="entry:${entries}">
 
@@ -29,11 +29,14 @@
         <strong th:text="${entry.title}">Title</strong> -
         <span th:text="${entry.content}"></span>
        </div>
+        <div th:if="${user}">
+
         <div class="delete-btn" th:if="${entry.userEntry.id} == ${user.id}">
             <a th:href="@{'/entry/delete/' + ${entry.id}}">Usuń</a>
         </div>
         <div class="delete-btn" th:if="${entry.userEntry.id} == ${user.id}">
             <a th:href="@{'/entry/edit/' + ${entry.id}}">Edytuj</a>
+        </div>
         </div>
 
     </div>
