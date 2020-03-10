@@ -17,7 +17,7 @@ public class Instalator implements CommandLineRunner {
     @Autowired
     RoleService roleService;
 
-    @Autowired
+   @Autowired
     UserService userService;
 
     @Autowired
