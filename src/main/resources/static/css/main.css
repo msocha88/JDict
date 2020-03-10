@@ -1,7 +1,31 @@
 body{
 display: flex;
+flex-direction: column;
 justify-content: space-between;
     align-items: center;
 }
 
+main{
+margin-top: 100px;}
 
+.page-header, .page-footer{
+display:flex;
+background: black;
+height: 100px;
+color:white;
+}
+
+.page-header{
+position:fixed;
+top:0;
+left:0;
+width: 100%;
+padding: 20px, 40px;
+justify-content: space-between;
+align-items: center;}
+
+.page-footer{
+min-height:40px;
+display:flex;
+justify-content: center;
+align-content:center;}
