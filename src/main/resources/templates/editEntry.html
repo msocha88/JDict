@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<header class="page-header">
+    <div th:replace="fragments/menu :: menu"/>
+</header>
+
 <form th:action="@{'/entry/edit/' + ${entry.id}}" th:object="${entry}" method="post">
 
     <label>Tytuł</label>

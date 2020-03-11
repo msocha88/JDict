@@ -1,5 +1,9 @@
-
-
+.container{
+ background-color:black;
+display:flex;
+justifi-content: space-between;
+align-items: center;
+padding:10px 20px 10px}
 
 .item a:link,.item a:visited {
   background-color: black;
@@ -15,22 +19,17 @@
   color: black;
 }
 
-.navbar-nav li{
-  text-align: center;
-  display: inline-block;
-
+.navbar-nav ul{
+list-style: none;
+margin:0;
+paddig:0;
+display:flex;
+    li{
+    margin: 0 0 0 12px}
 }
 
 
 img.logo{
-width: 7%;
-float: left;
-padding: 10px;
-}
 
-
- .container{
- overflow: auto;
- background-color:black;
- color: white;
+line-height:1px;
 }
