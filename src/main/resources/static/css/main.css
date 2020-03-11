@@ -28,9 +28,16 @@ padding: 20px 40px;
 justify-content: space-between;
 align-items: center;}
 
+.entries{
+display: flex;
+flex-direction: column;
+align-content: flex-start;
+}
 .page-footer{
-width:100%;
+width: 100%;
+top:0;
+left:0;
 min-height:40px;
-display:flex;
+display: flex;
 justify-content: center;
 align-content:center;}

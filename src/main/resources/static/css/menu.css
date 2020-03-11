@@ -1,6 +1,7 @@
 .container{
  background-color:black;
 display:flex;
+ flex-wrap: wrap;
 justifi-content: space-between;
 align-items: center;
 padding:10px 20px 10px}
@@ -29,7 +30,17 @@ display:flex;
 }
 
 
-img.logo{
+.navbar-brand{
 
 line-height:1px;
 }
+
+.foot{
+color:white;
+display: flex;
+
+}
+
+.foot a:link, .foot a:visited {
+
+color: white;}

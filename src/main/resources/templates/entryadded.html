@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>thx</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <div th:replace="fragments/menu :: menu-css"/>
 </head>
 <body>
-<header>
-    <div th:replace="fragments/menu :: menu"/>
-</header>
 <main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+    <section>
+
 <a href="/entry/add">Dodaj kolejny</a>
+
+
+    </section>
 </main>
-<footer>
+
+<footer class="page-footer">
     <div th:replace="fragments/footer :: footer"/>
 </footer>
 </body>

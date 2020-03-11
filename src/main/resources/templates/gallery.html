@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Gallery</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-
     <div th:replace="fragments/menu :: menu-css"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/gallery.css}">
 
@@ -12,32 +11,32 @@
 
 </head>
 <body>
+<main>
 <header class="page-header">
     <div th:replace="fragments/menu :: menu"/>
 </header>
 
-<main>
-<section>
+<section class="entries">
 
 <!--    <div th:if="${user.name}" th:text="|Witaj ${user.name}|"></div>-->
 
     <div class="entry" th:each="entry:${entries}">
 
         <div class="topbar">
-            <div class="user-name" th:text="${entry.userEntry.userName}"></div>
+            <div class="user-name" th:text="|Autor: ${entry.userEntry.userName}|"></div>
+        <div class="category" th:text="|Kategoria: ${entry.category.name}|"></div>
             <div class="date" th:text="${entry.date}"></div>
         </div>
-        <div class="category" th:text="${entry.category.name}"></div>
-       <div class="entry content">
-        <strong th:text="${entry.title}">Title</strong> -
-        <span th:text="${entry.content}"></span>
+       <div class="entry-content">
+        <strong th:text="${entry.title}"/> -
+        <span th:text="${entry.content}"/>
        </div>
-        <div th:if="${user}">
+        <div th:if="${user}" class="bottombar">
 
-        <div class="delete-btn" th:if="${entry.userEntry.id} == ${user.id}">
+        <div class="btn" th:if="${entry.userEntry.id} == ${user.id}">
             <a th:href="@{'/entry/delete/' + ${entry.id}}">Usuń</a>
         </div>
-        <div class="delete-btn" th:if="${entry.userEntry.id} == ${user.id}">
+        <div class="btn" th:if="${entry.userEntry.id} == ${user.id}">
             <a th:href="@{'/entry/edit/' + ${entry.id}}">Edytuj</a>
         </div>
         </div>

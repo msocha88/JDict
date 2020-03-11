@@ -2,26 +2,40 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edytuj Wpis</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <div th:replace="fragments/menu :: menu-css"/>
+
 </head>
 <body>
 
 <header class="page-header">
     <div th:replace="fragments/menu :: menu"/>
 </header>
-
+<section>
 <form th:action="@{'/entry/edit/' + ${entry.id}}" th:object="${entry}" method="post">
 
+    <div>
     <label>Tytuł</label>
     <input type="text" th:field="*{title}" th:value="${title}">
+    </div>
+
+    <div>
     <label>Treść</label>
     <textarea th:field="*{content}" th:value="${content}" />
     <select th:field="*{selectedCategory}">
         <option th:each="category: ${categories}"
                 th:value="${category.name}" th:text="${category.name}"></option>
     </select>
+    </div>
     <input type="submit" value="Edytuj">
 </form>
+</section>
+</main>
 
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
 </body>
 </html>

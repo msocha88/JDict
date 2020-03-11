@@ -3,8 +3,9 @@
  border-width: 1px;
  border-color: grey;
  padding: 4px;
+ margin: 15px;
 }
-.delete-btn a:link,.delete-btn a:visited {
+.btn a:link,.btn a:visited {
  background-color: black;
  color: white;
  padding: 4px 5px;
@@ -13,15 +14,32 @@
  display: inline-block;
  }
 
-.delete-btn a:hover,.delete-btn a:active {
+.btn a:hover,.btn a:active {
  background-color: white;
  color: black;
  border-width: 1px;
  border-color:black;
  }
-.user-name{
-float:left;}
-.date{
-float:right;}
-.category{
-clear:both;}
+.topbar{
+padding: 0 10px 0 10px;
+background-color: lightgrey;
+display:flex;
+ flex-wrap: wrap;
+justify-content : space-between;}
+
+.bottombar{
+padding:0 10px 0px 10px;
+display: flex;
+justify-content: flex-start;
+}
+
+.btn{
+margin: 5px;}
+
+
+.entry-content{
+ border-style: solid;
+ border-width: 1px;
+ border-color: grey;
+ padding: 4px;
+}
