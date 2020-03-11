@@ -43,3 +43,22 @@ margin: 5px;}
  border-color: grey;
  padding: 4px;
 }
+
+.category-wrapper{
+display:flex;
+justify-content: flex-start;
+flex-wrap : wrap;
+background: black;
+padding: 20px;
+}
+
+.category-wrapper a:link,.category-wrapper a:visited{
+    text-decoration:none;
+    background: black;
+    color: white;
+    }
+.category-wrapper a:active, .category-wrapper a:hover{
+    background:white;
+    color:black;
+    }
+}

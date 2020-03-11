@@ -8,6 +8,7 @@ import pl.micsoc.dictionary.repository.EntryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class EntryService {
@@ -28,5 +29,17 @@ public class EntryService {
 
         return list;
 
+    }
+
+    public List<Entry> findByCategoryId(Long id) {
+
+        List<Entry> list = new ArrayList<>();
+
+        for (Entry entry : entryRepository.findAll()) {
+            if (entry.getCategory().getId() == id) {
+                list.add(entry);
+            }
+        }
+        return list;
     }
 }

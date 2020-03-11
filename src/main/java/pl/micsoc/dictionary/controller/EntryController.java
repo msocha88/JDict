@@ -10,6 +10,7 @@ import pl.micsoc.dictionary.model.Entry;
 import pl.micsoc.dictionary.repository.EntryRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 import pl.micsoc.dictionary.service.CategoryService;
+import pl.micsoc.dictionary.service.EntryService;
 
 import java.sql.Date;
 
@@ -22,6 +23,9 @@ public class EntryController {
 
     @Autowired
     EntryRepository entryRepository;
+
+    @Autowired
+    EntryService entryService;
 
     @Autowired
     CategoryService categoryService;
@@ -60,6 +64,7 @@ public class EntryController {
     @GetMapping("/show")
     public String showEntries(ModelMap modelMap) {
 
+        modelMap.put("categories", categoryService.allCategories());
         modelMap.put("entries", entryRepository.findAll());
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -107,5 +112,17 @@ public class EntryController {
         entryRepository.save(entry);
 
         return "redirect:/entry/show";
+    }
+
+    @GetMapping("/category/{id}")
+    public String entriesByCategory(@PathVariable String id, ModelMap modelMap) {
+
+        Long longid = Long.parseLong(id);
+
+        modelMap.put("categories", categoryService.allCategories());
+        modelMap.put("entries", entryService.findByCategoryId(longid));
+
+
+        return "EntryFromCategory";
     }
 }
