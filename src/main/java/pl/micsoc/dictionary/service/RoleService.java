@@ -6,6 +6,7 @@ import pl.micsoc.dictionary.model.Role;
 import pl.micsoc.dictionary.repository.RoleRepository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -24,5 +25,9 @@ public class RoleService {
 
     public Set<Role> allRoles() {
         return new HashSet<>(roleRepository.findAll());
+    }
+
+    public List<Role> listAll() {
+        return roleRepository.findAll();
     }
 }

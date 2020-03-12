@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista użytkowników</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <div th:replace="fragments/menu :: menu-css"/>
+</head>
+
+<body>
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+
+    <section>
+
+        <div class="userlist">
+
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>email</th>
+                    <th>Rola</th>
+                    <th>Zmień Rolę</th>
+                    <th>Usuń Użytkownika</th>
+                </tr>
+                <tr th:each="user: ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.roles.role}"></td>
+                    <td>
+                        <select  th:select>
+                            <otpion th:each="role:${roles}"
+                                    th:value="${role.role}"
+                                    th:text="${role.role}">
+                            </otpion>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+
+</body>
+</html>

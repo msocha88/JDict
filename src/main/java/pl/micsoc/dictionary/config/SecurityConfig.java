@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/entry/show").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/entry/category/**").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+                .antMatchers("/admin/**").hasRole("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/entry/show",true)

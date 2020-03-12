@@ -10,8 +10,10 @@ import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.repository.RoleRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 
+
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -46,6 +48,11 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+    public List<User> findAll() {
+
+        return userRepository.findAll();
+    }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
