@@ -35,14 +35,18 @@
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
-                    <td th:text="${user.roles.role}"></td>
+                    <td th:text="${user.roles}"></td>
                     <td>
-                        <select  th:select>
-                            <otpion th:each="role:${roles}"
-                                    th:value="${role.role}"
-                                    th:text="${role.role}">
-                            </otpion>
-                        </select>
+                        <form th:actrion="@{/admin/setuserrole}">
+                        <select>
+                            <option th:each="role:*{roles}"
+                                    th:value="${role}"
+                                    th:text="${role.role}"/>
+                            </select>
+                        </form>
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             </table>

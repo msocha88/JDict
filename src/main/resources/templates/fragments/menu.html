@@ -26,6 +26,8 @@
                     <li>   <div class="item"><a th:href="@{/entry/add}">Dodaj wpis</a></div></li>
                     <li>  <div class="item"><a th:href="@{/login}">Zaloguj się</a></div></li>
                     <li>   <div class="item"><a th:href="@{/registration}">Rejestracja</a></div></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')">
+                        <div class="item"><a th:href="@{/admin}">Panel</a></div> </li>
                 </ul>
             </div>
         </div>

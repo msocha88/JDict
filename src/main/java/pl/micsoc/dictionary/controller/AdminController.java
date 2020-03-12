@@ -27,8 +27,8 @@ public class AdminController {
     @GetMapping("/users")
     public String adminUserList(ModelMap modelMap) {
 
-        modelMap.put("roles", roleService.listAll());
         modelMap.put("users", userService.findAll());
+        modelMap.put("roles", roleService.listAll());
 
         return "adminUserList";
     }
