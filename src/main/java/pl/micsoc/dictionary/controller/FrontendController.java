@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FrontendController {
 
-
     @GetMapping("/")
     public String sayElo() {
-        return "gallery";
+        return "redirect:/entry/show";
+
     }
-
-
 
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Lista użytkowników</title>
@@ -35,18 +35,20 @@
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
-                    <td th:text="${user.roles}"></td>
+                    <td th:text="${user.roles[0].role}"></td>
                     <td>
-                        <form th:actrion="@{/admin/setuserrole}">
-                        <select>
-                            <option th:each="role:*{roles}"
-                                    th:value="${role}"
-                                    th:text="${role.role}"/>
+                        <form th:action="@{'/admin/changeuserrole/' + ${user.userName}}"
+                              th:object="${newRole}" method="post">
+                            <select th:field="*{id}">
+                                <option th:each="role: ${roles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.role}"/>
                             </select>
+                            <input type="submit" value="zmień"/>
                         </form>
                     </td>
-                    <td>
-
+                    <td th:if="${user.roles[0].role} != 'ROLE_ADMIN'">
+                        <a th:href="@{'/admin/deleteuser/'+ ${user.id}}">X</a>
                     </td>
                 </tr>
             </table>

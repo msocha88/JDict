@@ -58,4 +58,14 @@ public class UserService {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
+
+    public void deleteUser(String id) {
+
+        userRepository.delete(userRepository.findById(Integer.valueOf(id)).get());
+
+    }
+
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
 }

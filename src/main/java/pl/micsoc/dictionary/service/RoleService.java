@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.micsoc.dictionary.model.Role;
 import pl.micsoc.dictionary.repository.RoleRepository;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,5 +30,11 @@ public class RoleService {
 
     public List<Role> listAll() {
         return roleRepository.findAll();
+    }
+
+    public Set<Role> findById(int id) {
+        Role role = roleRepository.findById(id).get();
+
+        return new HashSet<Role>(Collections.singleton(role));
     }
 }

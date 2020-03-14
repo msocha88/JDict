@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import pl.micsoc.dictionary.model.Role;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 
     Role findByRole(String role);
 }
