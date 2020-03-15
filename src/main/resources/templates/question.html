@@ -27,7 +27,7 @@
                 <div class="author"><label>Autor: </label><span th:text="${question.author.userName}"/></div>
                 <div class="date" th:text="${question.date}"></div>
             </div>
-            <div class="main">
+            <div class="quest-main">
                 <div>
                     <label>Nazwa firmy: </label>
                     <a th:href="@{'/questions/' + ${question.company}}" th:text="${question.company}"></a>
@@ -41,10 +41,11 @@
                 </h2>
             </div>
         </div>
-    <p class="answers">
+    <div class="answers">
 
         <h2>Odpowiedzi: </h2>
         <div class="answer" th:each="answer: ${answers}">
+
             <div class="topbar">
                 <div class="ans-author"><label>Autor: </label><span th:text="${answer.author.userName}"/></div>
                 <div class="ans-date" th:text="${answer.date}"></div>
