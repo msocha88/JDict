@@ -27,8 +27,8 @@
                 ${questions}">
                     <td th:text="${question.id}"></td>
                     <td th:text="${question.author.userName}"></td>
-                    <td th:text="${question.author.company}"></td>
-                    <td th:text="${question.title}"></td>
+                    <td th:text="${question.company}"></td>
+                    <td><a th:href="@{'/questions/' + ${question.id}}" th:text="${question.title}"></a></td>
                 </tr>
             </table>
                 <a href="/questions/add">Dodaj nowe</a>

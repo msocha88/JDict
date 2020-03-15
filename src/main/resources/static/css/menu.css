@@ -1,10 +1,16 @@
+.navbar{
+display: flex;
+flex-direction: row;
+}
+
 .container{
+width:100%;
  background-color:black;
- display:flex;
+ display: flex;
+ flex-direction: row;
  flex-wrap: wrap;
-justify-content: space-between;
-align-items: flex-start;
-padding:10px 20px 10px}
+ justify-content: flex-start;
+ padding:10px 10px 10px}
 
 .item a:link,.item a:visited {
   background-color: black;
@@ -19,12 +25,21 @@ padding:10px 20px 10px}
   background-color: white;
   color: black;
 }
+.navbar-nav{
+width: calc(100% - 100px);
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+padding: 20px 20px;
+}
+
 
 .navbar-nav ul{
 list-style: none;
 margin:0;
-paddig:0;
+padding:0;
 display:flex;
+
     li{
     margin: 0 0 0 12px}
 }
@@ -36,11 +51,11 @@ line-height:1px;
 }
 
 .foot{
+width:100%;
 color:white;
 display: flex;
 
 }
 
 .foot a:link, .foot a:visited {
-
 color: white;}

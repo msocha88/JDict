@@ -19,13 +19,17 @@
             <div class="navbar-header">
                 <a class="navbar-brand" th:href="@{/entry/show}"><img class="logo" src="/logo.jpg"></a>
             </div>
-            <div class="nav navbar-nav">
+            <div class="navbar-nav">
                 <ul>
-                    <li> <div class="item"><a th:href="@{/entry/show}">Pokaż wpisy</a></div></li>
+                    <li> <div class="item"><a th:href="@{/entry/show}">Pokaż słownik</a></div></li>
                     <li sec:authorize="isAuthenticated()"> <div class="item"><a th:href="@{'/user/' +
                     ${#httpServletRequest.remoteUser}}">Moje wpisy</a> </div></li>
-                    <li>   <div class="item"><a th:href="@{/entry/add}">Dodaj wpis</a></div></li>
-                    <li>  <div class="item"><a th:href="@{/login}">Zaloguj się</a></div></li>
+                    <li><div class="item"><a th:href="@{/questions/}">Pytania rekrutacyjne</a></div> </li>
+<!--                    <li>   <div class="item"><a th:href="@{/entry/add}">Dodaj wpis</a></div></li>-->
+                </ul>
+
+                <ul>
+                    <li>  <div class="item"><a th:href="@{/login}">Logowanie</a></div></li>
                     <li>   <div class="item"><a th:href="@{/registration}">Rejestracja</a></div></li>
                     <li sec:authorize="hasRole('ROLE_ADMIN')">
                         <div class="item"><a th:href="@{/admin}">Panel</a></div> </li>
