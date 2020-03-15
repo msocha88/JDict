@@ -11,6 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -65,4 +66,17 @@ public class User {
     @OneToMany(mappedBy = "author")
     private Set<Answer> answers;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(userName, user.userName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userName);
+    }
 }

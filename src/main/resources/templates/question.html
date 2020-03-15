@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pytania rekrutacyjna</title>
+
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+
+    <div th:replace="fragments/menu :: menu-css"/>
+
+
+</head>
+<body>
+
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+    <section>
+
+        <div clas="question">
+            <div class ="topbar">
+                <div class="author" th:text="${question.author.userName}"></div>
+                <div class="date" th:text="${question.date}"></div>
+            </div>
+            <div class="header">
+                <label>Nazwa firmy</label>
+                <div class="company" th:text="${question.company}"></div>
+                <div class="title" th:text="${question.title}"></div>
+                <div class="content" th:utext="${question.content}"></div>
+            </div>
+
+        </div>
+        <div class="answers">
+            <div class="answer" th:each="answer: ${answers}">
+                <div class="ans-author" th:text="${answer.author.userName}"></div>
+                <div class="ans-date" th:text="${answer.date}"></div>
+                <div class="ans-content" th:utext="${answer.content}"></div>
+            </div>
+        </div>
+        <div class="addanswer">
+<form th:action="@{'/questions/' + ${question.id} + '/addanswer'}" th:object="${newAnswer}" method="post">
+    <textarea th:field="*{content}" placeholder="Twoja odpowiedź"></textarea>
+    <input type="submit">
+</form>
+        </div>
+
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+</body>
+</html>

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -31,6 +32,16 @@ public class Question {
     private Date date;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Question)) return false;
+        Question question = (Question) o;
+        return id == question.id;
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

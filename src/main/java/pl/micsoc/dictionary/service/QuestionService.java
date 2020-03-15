@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import pl.micsoc.dictionary.model.Answer;
 import pl.micsoc.dictionary.model.Question;
 import pl.micsoc.dictionary.repository.QuestionRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,5 +42,15 @@ public class QuestionService {
     public List<Question> allQuestions() {
 
         return questionRepository.findAll();
+    }
+
+    public Question findById(String id) {
+
+        return questionRepository.findById(Integer.valueOf(id)).get();
+    }
+
+    public List<Answer> allAnswersOfQuestion(String id) {
+        Question question = questionRepository.findById(Integer.valueOf(id)).get();
+        return new ArrayList<>(question.getAnswers());
     }
 }
