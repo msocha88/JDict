@@ -59,4 +59,10 @@ public class User {
     @OneToMany(mappedBy = "userEntry")
     private Set<Entry> entries;
 
+    @OneToMany(mappedBy = "author")
+    private Set<Question> questions;
+
+    @OneToMany(mappedBy = "author")
+    private Set<Answer> answers;
+
 }

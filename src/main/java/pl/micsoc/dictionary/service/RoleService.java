@@ -37,4 +37,8 @@ public class RoleService {
 
         return new HashSet<Role>(Collections.singleton(role));
     }
+
+    public void deleteById(Integer id) {
+        roleRepository.deleteById(id);
+    }
 }

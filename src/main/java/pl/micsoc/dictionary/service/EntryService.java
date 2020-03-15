@@ -8,7 +8,6 @@ import pl.micsoc.dictionary.repository.EntryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class EntryService {

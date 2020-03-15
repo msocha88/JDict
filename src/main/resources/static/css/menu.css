@@ -1,9 +1,9 @@
 .container{
  background-color:black;
-display:flex;
+ display:flex;
  flex-wrap: wrap;
-justifi-content: space-between;
-align-items: center;
+justify-content: space-between;
+align-items: flex-start;
 padding:10px 20px 10px}
 
 .item a:link,.item a:visited {

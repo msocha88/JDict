@@ -81,9 +81,9 @@ public class EntryController {
     @GetMapping("/delete/{id}")
     public String deleteEntry(@PathVariable String id) {
 
-        Long longId = Long.parseLong(id);
 
-        entryRepository.delete(entryRepository.findEntryById(longId));
+
+        entryRepository.delete(entryRepository.findEntryById(Integer.valueOf(id)));
 
         return "redirect:/entry/show";
 
@@ -92,9 +92,8 @@ public class EntryController {
     @GetMapping("/edit/{id}")
     public String editEntry(@PathVariable String id, ModelMap modelMap) {
 
-        Long longid = Long.parseLong(id);
 
-        modelMap.put("entry", entryRepository.findEntryById(longid));
+        modelMap.put("entry", entryRepository.findEntryById(Integer.valueOf(id)));
         modelMap.put("categories", categoryService.allCategories());
 
         return "editEntry";

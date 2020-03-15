@@ -5,31 +5,32 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Set;
 
-@Entity
 @Data
 @NoArgsConstructor
-public class Entry {
-
+@Entity
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
+
+    private String company;
 
     private String title;
 
     private String content;
 
+    @ManyToOne
+    private User author;
+
+    @OneToMany(mappedBy = "question")
+    private Set<Answer> answers;
+
     private Date date;
 
-    @ManyToOne
-    private Category category;
 
-    @ManyToOne
-    private User userEntry;
 
-    @Transient
-    private String selectedCategory;
 
 }

@@ -39,10 +39,10 @@ public class AdminController {
     }
 
 
-    @RequestMapping(value = "/changeuserrole/{name}", method =RequestMethod.POST)
-    public String changeUserRole(@PathVariable String name,@NotNull @ModelAttribute("newRole") Role role) {
+    @RequestMapping(value = "/changeuserrole/{name}", method = RequestMethod.POST)
+    public String changeUserRole(@PathVariable String name, @NotNull @ModelAttribute("newRole") Role role) {
 
-        User user= userService.findUserByUserName(name);
+        User user = userService.findUserByUserName(name);
         Set<Role> roles = new HashSet<>(roleService.findById(role.getId()));
 
         user.setRoles(roles);
@@ -56,5 +56,34 @@ public class AdminController {
         userService.deleteUser(id);
 
         return "redirect:/admin/users";
+    }
+
+    @GetMapping("/roles")
+    public String allRoles(ModelMap modelMap) {
+        modelMap.put("roles", roleService.listAll());
+
+        return "roles";
+    }
+
+    @GetMapping("/roles/delete/{id}")
+    public String deleteRole(@PathVariable String id) {
+
+        roleService.deleteById(Integer.valueOf(id));
+
+        return "redirect:/admin/roles";
+    }
+
+    @GetMapping("/roles/create")
+    public String createRole(ModelMap modelMap) {
+
+        modelMap.put("role", new Role());
+        return "createRole";
+    }
+
+    @PostMapping("/roles/create")
+    public String createdRole(@ModelAttribute("role") Role role) {
+
+        roleService.save(role);
+        return "redirect:/admin/roles";
     }
 }

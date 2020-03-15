@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pytania Rekrutacyjne</title>
+
+    <div th:replace="fragments/menu :: menu-css"/>
+
+</head>
+<body>
+
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+    <section>
+
+        <div>
+            <table>
+                <tr>
+                    <th>L.p</th>
+                    <th>Autor</th>
+                    <th>Firma</th>
+                    <th>Tytuł</th>
+                </tr>
+                <tr th:each="question:
+                ${questions}">
+                    <td th:text="${question.id}"></td>
+                    <td th:text="${question.author.userName}"></td>
+                    <td th:text="${question.author.company}"></td>
+                    <td th:text="${question.title}"></td>
+                </tr>
+            </table>
+                <a href="/questions/add">Dodaj nowe</a>
+        </div>
+
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+</body>
+</html>

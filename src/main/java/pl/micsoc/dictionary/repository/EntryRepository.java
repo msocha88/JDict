@@ -6,7 +6,7 @@ import pl.micsoc.dictionary.model.Entry;
 import pl.micsoc.dictionary.model.User;
 
 @Repository
-public interface EntryRepository extends JpaRepository<Entry, Long> {
+public interface EntryRepository extends JpaRepository<Entry, Integer> {
 
-    Entry findEntryById(Long id);
+    Entry findEntryById(Integer id);
 }

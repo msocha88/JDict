@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Role na stronie</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <div th:replace="fragments/menu :: menu-css"/>
+
+</head>
+<body>
+
+<main>
+
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+
+    <section>
+        <div>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th>Usuń</th>
+                </tr>
+                <tr th:each="role:${roles}">
+                    <td th:text="${role.id}"></td>
+                    <td th:text="${role.role}"></td>
+                    <td><a th:href="@{'/admin/roles/delete' + ${role.id}">X</a></td>
+                </tr>
+            </table>
+
+            <a th:href="@{/admin/roled/create">Dodaj Rolę</a>
+        </div>
+
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+</body>
+</html>

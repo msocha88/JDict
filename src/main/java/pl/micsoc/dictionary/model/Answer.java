@@ -5,31 +5,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
 
-@Entity
 @Data
 @NoArgsConstructor
-public class Entry {
-
+@Entity
+public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    private String title;
+    private int id;
 
     private String content;
 
     private Date date;
 
     @ManyToOne
-    private Category category;
+    private User author;
+
+    private int points;
 
     @ManyToOne
-    private User userEntry;
-
-    @Transient
-    private String selectedCategory;
+    private Question question;
 
 }

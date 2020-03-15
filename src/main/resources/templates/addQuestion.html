@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj pytanie</title>
+
+    <div th:replace="fragments/menu :: menu-css"/>
+
+</head>
+<body>
+
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+
+    <section>
+        <form th:action="@{/questions/add}" th:object="${question}" method="post">
+
+            <label>Firma rekrutująca</label>
+            <input type="text" th:field="*{company}">
+
+            <label>Nazwa zadania</label>
+            <input type="text" th:field="*{title}">
+
+            <label>Treść</label>
+            <textarea th:field="*{content}"></textarea>
+
+            <input type="submit" value="Dodaj">
+        </form>
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+</body>
+</html>
