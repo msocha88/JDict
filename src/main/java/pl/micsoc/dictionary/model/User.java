@@ -2,10 +2,7 @@ package pl.micsoc.dictionary.model;
 
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,7 +11,8 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -63,7 +61,8 @@ public class User {
     @OneToMany(mappedBy = "author")
     private Set<Question> questions;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany
+    @JoinTable(name = "user_answer", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "answer_id"))
     private Set<Answer> answers;
 
     @Override

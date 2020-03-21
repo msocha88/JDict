@@ -34,6 +34,8 @@ public class AnswerService {
 
         answer.setQuestion(questionService.findById(id));
         answer.setDate(new Date(System.currentTimeMillis()));
+        answer.setId(null);
+        questionService.addAnswer(id, answer);
 
         answerRepository.save(answer);
     }

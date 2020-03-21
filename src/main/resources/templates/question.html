@@ -56,10 +56,9 @@
 
         <div class="add-answer">
             <h3>Twoja odpowiedź</h3>
-            <form th:action="@{'/questions/' + ${question.id} + '/addanswer'}" th:object="${newAnswer}"
-                  method="post">
-                <textarea th:field="*{content}" placeholder="Twoja odpowiedź"></textarea>
-                <input type="submit">
+            <form th:action="@{'/questions/' + ${question.id}}" th:object="${newAnswer}" method="post">
+                <textarea th:field="*{content}"></textarea>
+                <input type="submit" value="Dodaj odpowiedź">
             </form>
         </div>
 </div>

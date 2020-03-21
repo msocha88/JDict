@@ -53,4 +53,9 @@ public class QuestionService {
         Question question = questionRepository.findById(Integer.valueOf(id)).get();
         return new ArrayList<>(question.getAnswers());
     }
+
+    public void addAnswer(String id, Answer answer) {
+        allAnswersOfQuestion(id).add(answer);
+        questionRepository.save(questionRepository.findById(Integer.valueOf(id)).get());
+    }
 }

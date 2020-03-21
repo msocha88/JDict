@@ -40,7 +40,7 @@ public class QAController {
     public String addedQuestion(@ModelAttribute("question") Question question) {
 
         questionService.save(question);
-        return "redirect:questions/";
+        return "redirect:/questions/";
     }
 
     @GetMapping("/{id}")
@@ -48,13 +48,14 @@ public class QAController {
 
         modelMap.put("question", questionService.findById(id));
         modelMap.put("answers", questionService.allAnswersOfQuestion(id));
-        modelMap.put("newAnswer", new Answer());
+       Answer answer = new Answer();
+        modelMap.put("newAnswer", answer);
 
         return "question";
     }
 
-    @PostMapping("/{id}/addanswer")
-    public String addAnswer(@PathVariable String id, @ModelAttribute("newAnswer") Answer answer) {
+    @PostMapping("/{id}")
+    public String addAnswer(@PathVariable String id, @ModelAttribute(name = "newAnswer") Answer answer) {
 
         answerService.addAnswer(id, answer);
 
