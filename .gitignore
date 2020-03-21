@@ -32,4 +32,4 @@ build/
 
 ### properties ###
 application.properties
-Instalator.*
+/install/
