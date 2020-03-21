@@ -33,3 +33,4 @@ build/
 ### properties ###
 application.properties
 /install/
+Instalator.java
