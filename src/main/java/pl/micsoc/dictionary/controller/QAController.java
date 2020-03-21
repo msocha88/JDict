@@ -62,4 +62,33 @@ public class QAController {
         return "redirect:/questions/{id}";
     }
 
+    @GetMapping("/{questionId}/deleteanswer/{answerId}")
+    public String deleteAnswer(@PathVariable("questionId") String questionId,
+                               @PathVariable("answerId") String answerId) {
+
+        answerService.deleteAnswer(answerId);
+
+        return "redirect:/questions/{questionId}";
+    }
+
+    @GetMapping("/{questionId}/editanswe/{answerId}")
+    public String editAnswer(@PathVariable("questionId") String questionId,
+                               @PathVariable("answerId") String answerId
+    ,ModelMap modelMap) {
+
+        modelMap.put("answer",answerService.findAnswer(answerId));
+
+        return "editanswer";
+    }
+
+
+    @GetMapping("/company/{companyName}")
+    public String allQuesionsOfCompany(@PathVariable String companyName, ModelMap modelMap) {
+
+        modelMap.put("questions",questionService.allQuestionsofCompany(companyName));
+
+        return "QuestionOfCompany";
+    }
+
+
 }

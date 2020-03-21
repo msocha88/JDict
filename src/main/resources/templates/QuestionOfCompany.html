@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pytania rekrutacyjna</title>
+
+    <div th:replace="fragments/menu :: menu-css"/>
+
+</head>
+<body>
+
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+    <section>
+
+        <h1 th:text="${questions[0].company}"></h1>
+
+        <div class="question" th:each="question :${questions}">
+            <div class="topbar">
+                <div class="author"><label>Autor: </label><span th:text="${question.author.userName}"/></div>
+                <div class="date" th:text="${question.date}"></div>
+                </div>
+            <div class="quest-main">
+                <div>
+                    <label>Tytuł: </label>
+                    <a class="title" th:href="@{'/questions/' + ${question.id}}" th:text="${question.title}"/>
+                </div>
+                <h3>Treść pytania:</h3>
+                <div class="content" th:utext="${question.content}"></div>
+            </div>
+            <div class="bottombar">Odpowiedzi: <span th:text="${#lists.size(questions)}"/></div>
+        </div>
+
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+</body>
+</html>

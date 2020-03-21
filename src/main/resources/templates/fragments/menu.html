@@ -31,6 +31,7 @@
 
                 <ul>
                     <li>  <div class="item"><a th:href="@{/login}">Logowanie</a></div></li>
+                    <li sec:authorize="isAuthenticated()"><div class="item"><a th:href="@{/logout}">Wyloguj</a></div></li>
                     <li>   <div class="item"><a th:href="@{/registration}">Rejestracja</a></div></li>
                     <li sec:authorize="hasRole('ROLE_ADMIN')">
                         <div class="item"><a th:href="@{/admin}">Panel</a></div> </li>

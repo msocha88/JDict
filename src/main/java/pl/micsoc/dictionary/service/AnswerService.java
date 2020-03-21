@@ -39,4 +39,12 @@ public class AnswerService {
 
         answerRepository.save(answer);
     }
+
+    public void deleteAnswer(String answerId) {
+        answerRepository.delete(answerRepository.findById(Long.parseLong(answerId)).get());
+    }
+
+    public Answer findAnswer(String answerId) {
+        return answerRepository.findById(Long.parseLong(answerId)).get();
+    }
 }

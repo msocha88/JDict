@@ -30,7 +30,7 @@
             <div class="quest-main">
                 <div>
                     <label>Nazwa firmy: </label>
-                    <a th:href="@{'/questions/' + ${question.company}}" th:text="${question.company}"></a>
+                    <a th:href="@{'/questions/company/' + ${question.company}}" th:text="${question.company}"></a>
                 </div>
                 <div>
                     <label>Tytuł: </label>
@@ -51,6 +51,11 @@
                 <div class="ans-date" th:text="${answer.date}"></div>
             </div>
             <div class="ans-content" th:utext="${answer.content}"></div>
+            <div class="bottombar">
+b                <div th:if="${answer.author.userName} == ${#httpServletRequest.remoteUser}">
+                <a th:href="@{${question.id} +'/deleteanswer/' + ${answer.id}}" th:text="Usuń"></a> </div>
+                <a th:href="@{'questions/' + ${question.id} +'/editanswer/' + ${answer.id}}" th:text="Edytuj"></a> </div>
+            </div>
         </div>
     </div>
 

@@ -12,6 +12,7 @@ import pl.micsoc.dictionary.repository.UserRepository;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionService {
@@ -57,5 +58,12 @@ public class QuestionService {
     public void addAnswer(String id, Answer answer) {
         allAnswersOfQuestion(id).add(answer);
         questionRepository.save(questionRepository.findById(Integer.valueOf(id)).get());
+    }
+
+    public List<Question> allQuestionsofCompany(String companyName) {
+        return questionRepository.findAll()
+                .stream()
+                .filter(s-> s.getCompany().equals(companyName))
+                .collect(Collectors.toList());
     }
 }
