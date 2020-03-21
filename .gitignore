@@ -31,5 +31,5 @@ build/
 .vscode/
 
 ### properties ###
-aplication.properties
+application.properties
 Instalator.*
