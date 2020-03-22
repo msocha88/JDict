@@ -17,7 +17,7 @@ public class Instalator implements CommandLineRunner {
     @Autowired
     RoleService roleService;
 
-   @Autowired
+    @Autowired
     UserService userService;
 
     @Autowired
@@ -41,16 +41,16 @@ public class Instalator implements CommandLineRunner {
 
 
         User user1 = new User();
-        user1.setName("Michał");
-        user1.setLastName("Socha");
-        user1.setRoles(roleService.allRoles());
-        user1.setPassword("*****");
         user1.setUserName("admin");
-        user1.setActive(true);
         user1.setEmail("socher@wp.pl");
 
         if (!userRepository.findAll().stream().anyMatch(x -> x.getEmail().equals(user1.getEmail()))
         ) {
+            user1.setName("Michał");
+            user1.setLastName("Socha");
+            user1.setRoles(roleService.allRoles());
+            user1.setPassword("*****");
+            user1.setActive(true);
             userService.saveUser(user1);
         }
     }
