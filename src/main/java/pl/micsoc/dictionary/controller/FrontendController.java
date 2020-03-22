@@ -10,7 +10,7 @@ public class FrontendController {
     public String sayElo() {
 
 
-        return "redirect:/entry/show/";
+        return "index";
 
     }
 

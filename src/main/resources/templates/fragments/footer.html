@@ -8,14 +8,12 @@
 
     <div class="foot" >
 
-        <footer>
             &copy; 2020 MS
             <span sec:authorize="isAuthenticated()">
                 | Użytkownik:  [[${#httpServletRequest.remoteUser}]] |
                 <a th:href="@{/logout}">Wyloguj</a>
             </span>
 
-        </footer>
     </div>
 
 </div>
