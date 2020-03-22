@@ -44,7 +44,7 @@ public class Instalator implements CommandLineRunner {
         user1.setName("Michał");
         user1.setLastName("Socha");
         user1.setRoles(roleService.allRoles());
-        user1.setPassword("***");
+        user1.setPassword("*****");
         user1.setUserName("admin");
         user1.setActive(true);
         user1.setEmail("socher@wp.pl");
