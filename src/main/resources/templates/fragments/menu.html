@@ -6,7 +6,7 @@
 
     <div th:fragment="menu-css">
         <!-- this is header-css -->
-        <meta name= viewport content= width=device-width initial-scale=1 maximum-scale=1>
+        <meta name=viewport content=width=device-width initial-scale=1 maximum-scale=1>
         <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/questions.css}"/>
@@ -18,23 +18,47 @@
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/entry/show}"><img class="logo" src="/logo.jpg"></a>
+                <a class="navbar-brand" th:href="@{/}"><img class="logo" src="/logo.jpg"></a>
             </div>
             <div class="navbar-nav">
                 <ul>
-                    <li> <div class="item"><a th:href="@{/entry/show}">Pokaż słownik</a></div></li>
-                    <li sec:authorize="isAuthenticated()"> <div class="item"><a th:href="@{'/user/' +
-                    ${#httpServletRequest.remoteUser}}">Moje wpisy</a> </div></li>
-                    <li><div class="item"><a th:href="@{/questions/}">Pytania rekrutacyjne</a></div> </li>
-<!--                    <li>   <div class="item"><a th:href="@{/entry/add}">Dodaj wpis</a></div></li>-->
+                    <li>
+                        <div class="item"><a th:href="@{/entry/show}">Pokaż słownik</a></div>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <div class="item"><a th:href="@{'/user/' +
+                    ${#httpServletRequest.remoteUser}}">Moje wpisy</a></div>
+                    </li>
+                    <li>
+                        <div class="item"><a th:href="@{/questions/}">Pytania rekrutacyjne</a></div>
+                    </li>
                 </ul>
 
                 <ul>
-                    <li>  <div class="item"><a th:href="@{/login}">Logowanie</a></div></li>
-                    <li sec:authorize="isAuthenticated()"><div class="item"><a th:href="@{/logout}">Wyloguj</a></div></li>
-                    <li>   <div class="item"><a th:href="@{/registration}">Rejestracja</a></div></li>
-                    <li sec:authorize="hasRole('ROLE_ADMIN')">
-                        <div class="item"><a th:href="@{/admin}">Panel</a></div> </li>
+                    <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')">
+                        <div class="dropdown">
+                            <a class="dropbtn">Panel</a>
+                            <div class="dropdown-content">
+
+                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">Admin</a>
+
+                                <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')"
+                                   th:href="@{/moderator/}">Moderator</a>
+
+                                <div class="item"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item"><a th:href="@{/login}">Logowanie</a></div>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <div class="item"><a th:href="@{/logout}">Wyloguj</a></div>
+                    </li>
+                    <li>
+                        <div class="item"><a th:href="@{/registration}">Rejestracja</a></div>
+                    </li>
+
                 </ul>
             </div>
         </div>

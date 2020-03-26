@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class FrontendController {
 
     @GetMapping("/")
-    public String sayElo() {
-
+    public String sayElo(){
 
         return "index";
-
     }
-
-
 }
 

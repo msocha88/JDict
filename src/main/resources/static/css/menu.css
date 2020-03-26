@@ -1,10 +1,11 @@
-.navbar{
+navbar{
 display: flex;
 flex-direction: row;
+ flex-wrap: wrap;
 }
 
 .container{
-width:100%;
+ width:100%;
  background-color:black;
  display: flex;
  flex-direction: row;
@@ -30,6 +31,7 @@ width: calc(100% - 100px);
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+ flex-wrap: wrap;
 padding: 20px 20px;
 }
 
@@ -39,7 +41,7 @@ list-style: none;
 margin:0;
 padding:0;
 display:flex;
-
+ flex-wrap: wrap;
     li{
     margin: 0 0 0 12px}
 }
@@ -52,10 +54,47 @@ line-height:1px;
 
 .foot{
 width:100%;
-color:white;
+color: white;
 display: flex;
 
 }
 
 .foot a:link, .foot a:visited {
 color: white;}
+
+
+### Dropdown list ###
+
+.dropbtn {
+  background-color: black;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.dropdown a:link, .dropdown a:visited{
+ font-size: 22px;
+ }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: white; color: black;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: black; color: white;}

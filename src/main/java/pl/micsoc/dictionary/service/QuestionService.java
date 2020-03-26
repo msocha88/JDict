@@ -66,4 +66,18 @@ public class QuestionService {
                 .filter(s-> s.getCompany().equals(companyName))
                 .collect(Collectors.toList());
     }
+
+    public void deleteQuestion(String id) {
+        questionRepository.delete(questionRepository.findById(Integer.valueOf(id)).get());
+    }
+
+    public void updateQuestion(String id, Question question) {
+        Question toUpdate = questionRepository.findById(Integer.valueOf(id)).get();
+
+        toUpdate.setCompany(question.getCompany());
+        toUpdate.setTitle(question.getTitle());
+        toUpdate.setContent(question.getContent());
+
+        questionRepository.save(toUpdate);
+    }
 }

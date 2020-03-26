@@ -1,3 +1,6 @@
+section{
+display:flex;}
+
 .entry{
  border-style: solid;
  border-width: 1px;
@@ -5,6 +8,8 @@
  padding: 4px;
  margin: 15px;
 }
+
+
 .btn a:link,.btn a:visited {
  background-color: black;
  color: white;
@@ -20,6 +25,7 @@
  border-width: 1px;
  border-color:black;
  }
+
 .topbar{
 padding: 0 10px 0 10px;
 background-color: lightgrey;
@@ -33,9 +39,9 @@ display: flex;
 justify-content: flex-start;
 }
 
+
 .btn{
 margin: 5px;}
-
 
 .entry-content{
  border-style: solid;
@@ -45,20 +51,47 @@ margin: 5px;}
 }
 
 .category-wrapper{
-display:flex;
-justify-content: flex-start;
-flex-wrap : wrap;
-background: black;
-padding: 20px;
-}
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap : wrap;
+  background: black;
+  }
+
+.category-wrapper ul {
+  font-size: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+  }
+
 
 .category-wrapper a:link,.category-wrapper a:visited{
     text-decoration:none;
     background: black;
     color: white;
     }
+
 .category-wrapper a:active, .category-wrapper a:hover{
     background:white;
     color:black;
     }
+}
+
+.gallery{
+display: flex;
+flex-direction: row;
+flex-wrap: no-wrap;
+align-content: flex-start;
+justify-content: center;
+}
+
+
+.entries{
+width:80%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-content: flex-start;
 }

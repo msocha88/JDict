@@ -8,50 +8,55 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/gallery.css}">
 
 
-
 </head>
 <body>
 <main>
 
-<header class="page-header">
-    <div th:replace="fragments/menu :: menu"/>
-</header>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+                <section class="category-wrapper">
+                    <ul th:each="category:${categories}">
+                        <li class="category"><a th:href="@{'/entry/category/'+${category.id}}"
+                                                th:text="${category.name}"></a></li>
+                    </ul>
+                </section>
+    </header>
+    <section class="main-section">
+        <section class="gallery">
 
-<section class="category-bar">
-    <div class="category-wrapper">
-        <ul th:each="category:${categories}">
-            <li class="category"><a th:href="@{'/entry/category/'+${category.id}}" th:text="${category.name}"></a></li>
-        </ul>
-    </div>
-</section>
 
-<section class="entries">
 
-<!--    <div th:if="${user.name}" th:text="|Witaj ${user.name}|"></div>-->
 
-    <div class="entry" th:each="entry:${entries}">
+            <section class="entries">
 
-        <div class="topbar">
-            <div class="user-name" th:text="|Autor: ${entry.userEntry.userName}|"></div>
-        <div class="category" th:text="|Kategoria: ${entry.category.name}|"></div>
-            <div class="date" th:text="${entry.date}"></div>
-        </div>
-       <div class="entry-content">
-        <strong th:text="${entry.title}"/> -
-        <span th:text="${entry.content}"/>
-       </div>
-        <div th:if="${user}" class="bottombar">
+                <!--    <div th:if="${user.name}" th:text="|Witaj ${user.name}|"></div>-->
 
-        <div class="btn" th:if="${entry.userEntry.id} == ${user.id}">
-            <a th:href="@{'/entry/delete/' + ${entry.id}}">Usuń</a>
-        </div>
-        <div class="btn" th:if="${entry.userEntry.id} == ${user.id}">
-            <a th:href="@{'/entry/edit/' + ${entry.id}}">Edytuj</a>
-        </div>
-        </div>
+                <div class="entry" th:each="entry:${entries}">
 
-    </div>
-</section>
+                    <div class="topbar">
+                        <div class="user-name" th:text="|Autor: ${entry.userEntry.userName}|"></div>
+                        <div class="category" th:text="|Kategoria: ${entry.category.name}|"></div>
+                        <div class="date" th:text="${entry.date}"></div>
+                    </div>
+                    <div class="entry-content">
+                        <strong th:text="${entry.title}"/> -
+                        <span th:text="${entry.content}"/>
+                    </div>
+                    <div th:if="${user}" class="bottombar">
+
+                        <div class="btn" th:if="${entry.userEntry.id} == ${user.id}">
+                            <a th:href="@{'/entry/delete/' + ${entry.id}}">Usuń</a>
+                        </div>
+                        <div class="btn" th:if="${entry.userEntry.id} == ${user.id}">
+                            <a th:href="@{'/entry/edit/' + ${entry.id}}">Edytuj</a>
+                        </div>
+                    </div>
+
+                </div>
+            <div class="Add entry"><a th:href="@{/entry/add}">Dodaj Wpis</a></div>
+            </section>
+        </section>
+    </section>
 </main>
 
 <footer class="page-footer">

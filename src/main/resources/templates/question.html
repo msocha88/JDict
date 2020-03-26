@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Pytania rekrutacyjna</title>
@@ -17,7 +17,7 @@
     <header class="page-header">
         <div th:replace="fragments/menu :: menu"/>
     </header>
-    <section>
+    <section class="main-section">
 
 
 <div class="quest-container">
@@ -40,6 +40,11 @@
                 <div class="content" th:utext="${question.content}"></div>
                 </h2>
             </div>
+            <div class="bottombar">
+                <div th:if="${question.author.userName} == ${#httpServletRequest.remoteUser}">
+                    <a class="btn-botbar" th:href="@{${question.id} +'/deletequestion/'}">Usuń</a> </div>
+                <a class="btn-botbar" th:href="@{${question.id} +'/editquestion/'}">Edytuj</a> </div>
+            </div>
         </div>
     <div class="answers">
 
@@ -52,14 +57,14 @@
             </div>
             <div class="ans-content" th:utext="${answer.content}"></div>
             <div class="bottombar">
-b                <div th:if="${answer.author.userName} == ${#httpServletRequest.remoteUser}">
-                <a th:href="@{${question.id} +'/deleteanswer/' + ${answer.id}}" th:text="Usuń"></a> </div>
-                <a th:href="@{'questions/' + ${question.id} +'/editanswer/' + ${answer.id}}" th:text="Edytuj"></a> </div>
+                <div th:if="${answer.author.userName} == ${#httpServletRequest.remoteUser}">
+                <a class="btn-botbar" th:href="@{${question.id} +'/deleteanswer/' + ${answer.id}}">Usuń</a> </div>
+                <a class="btn-botbar" th:href="@{${question.id} +'/editanswer/' + ${answer.id}}">Edytuj</a> </div>
             </div>
         </div>
     </div>
 
-        <div class="add-answer">
+        <div sec:authorize="isAuthenticated()" class="add-answer">
             <h3>Twoja odpowiedź</h3>
             <form th:action="@{'/questions/' + ${question.id}}" th:object="${newAnswer}" method="post">
                 <textarea th:field="*{content}"></textarea>

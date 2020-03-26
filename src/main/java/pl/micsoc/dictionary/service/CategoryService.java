@@ -37,4 +37,14 @@ public class CategoryService {
     }
 
 
+    public void update(String id, Category category) {
+
+        Category toUpdate = categoryRepository.findById(Long.parseLong(id)).get();
+
+        toUpdate.setName(category.getName());
+
+        if (toUpdate.getName() != null && !toUpdate.getName().equals("")) {
+        categoryRepository.save(toUpdate);
+        }
+    }
 }

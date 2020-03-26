@@ -47,4 +47,10 @@ public class AnswerService {
     public Answer findAnswer(String answerId) {
         return answerRepository.findById(Long.parseLong(answerId)).get();
     }
+
+    public void updateAnswer(String answerId, Answer answer) {
+        Answer newAnswer = answerRepository.findById(Long.parseLong(answerId)).get();
+                newAnswer.setContent(answer.getContent());
+        answerRepository.save(newAnswer);
+    }
 }

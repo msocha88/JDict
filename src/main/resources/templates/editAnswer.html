@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Panel</title>
+    <title>Edytuj odpowiedź</title>
 
-
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <div th:replace="fragments/menu :: menu-css"/>
 
 </head>
 <body>
+
 <main>
     <header class="page-header">
         <div th:replace="fragments/menu :: menu"/>
     </header>
-
     <section class="main-section">
 
-        <a href="/admin/users">Użytkownicy</a>
+        <form th:action="@{'/questions/'+${answer.question.id}}+'/editanswer/'+ ${answer.id}" method="post" th:object="${answer}">
 
-        <a href="/admin/roles">Role na stronie</a>
+            <textarea th:field="*{content}" th:value="${content}"></textarea>
+            <input type="submit" value="Edytuj">
+
+        </form>
+        
 
     </section>
 </main>
@@ -27,6 +29,5 @@
 <footer class="page-footer">
     <div th:replace="fragments/footer :: footer"/>
 </footer>
-
 </body>
 </html>

@@ -9,28 +9,29 @@
 
 </head>
 <body>
-
+<main>
 <header class="page-header">
     <div th:replace="fragments/menu :: menu"/>
 </header>
-<section>
-<form th:action="@{'/entry/edit/' + ${entry.id}}" th:object="${entry}" method="post">
+<section class="main-section">
 
-    <div>
-    <label>Tytuł</label>
-    <input type="text" th:field="*{title}" th:value="${title}">
-    </div>
+    <form th:action="@{'/entry/edit/' + ${entry.id}}" th:object="${entry}" method="post">
 
-    <div>
-    <label>Treść</label>
-    <textarea th:field="*{content}" th:value="${content}" />
-    <select th:field="*{selectedCategory}">
-        <option th:each="category: ${categories}"
-                th:value="${category.name}" th:text="${category.name}"></option>
-    </select>
-    </div>
-    <input type="submit" value="Edytuj">
-</form>
+        <div>
+            <label>Tytuł</label>
+            <input type="text" th:field="*{title}" th:value="${title}">
+        </div>
+
+        <div>
+            <label>Treść</label>
+            <textarea th:field="*{content}" th:value="${content}"/>
+            <select th:field="*{selectedCategory}">
+                <option th:each="category: ${categories}"
+                        th:value="${category.name}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        <input type="submit" value="Edytuj">
+    </form>
 </section>
 </main>
 

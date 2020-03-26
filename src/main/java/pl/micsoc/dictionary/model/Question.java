@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -18,7 +19,7 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String company;
 
@@ -31,6 +32,7 @@ public class Question {
     private User author;
 
     @OneToMany(mappedBy = "question")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Answer> answers;
 
     private Date date;

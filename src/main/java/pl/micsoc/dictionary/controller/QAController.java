@@ -48,7 +48,7 @@ public class QAController {
 
         modelMap.put("question", questionService.findById(id));
         modelMap.put("answers", questionService.allAnswersOfQuestion(id));
-       Answer answer = new Answer();
+        Answer answer = new Answer();
         modelMap.put("newAnswer", answer);
 
         return "question";
@@ -62,6 +62,30 @@ public class QAController {
         return "redirect:/questions/{id}";
     }
 
+    @GetMapping("/{questionId}/deletequestion")
+    public String deleteQuestion(@PathVariable("questionId") String id) {
+
+        questionService.deleteQuestion(id);
+
+        return "redirect:/questions/";
+    }
+
+    @GetMapping("/{questionId}/editquestion")
+    public String editQuestion(ModelMap modelMap, @PathVariable("questionId") String id) {
+
+        modelMap.put("question", questionService.findById(id));
+
+        return "editQuestion";
+    }
+
+    @PostMapping("/{questionId}/editquestion")
+    public String updateQuestion(@ModelAttribute Question question, @PathVariable("questionId") String id) {
+
+        questionService.updateQuestion(id, question);
+
+        return "redirect:/questions/{questionId}";
+    }
+
     @GetMapping("/{questionId}/deleteanswer/{answerId}")
     public String deleteAnswer(@PathVariable("questionId") String questionId,
                                @PathVariable("answerId") String answerId) {
@@ -71,21 +95,31 @@ public class QAController {
         return "redirect:/questions/{questionId}";
     }
 
-    @GetMapping("/{questionId}/editanswe/{answerId}")
-    public String editAnswer(@PathVariable("questionId") String questionId,
-                               @PathVariable("answerId") String answerId
-    ,ModelMap modelMap) {
+    @GetMapping("/{questionId}/editanswer/{answerId}")
+    public String editAnswer(
+            @PathVariable("questionId") String questionId,
+            @PathVariable("answerId") String answerId
+            , ModelMap modelMap) {
 
-        modelMap.put("answer",answerService.findAnswer(answerId));
+        modelMap.put("answer", answerService.findAnswer(answerId));
 
-        return "editanswer";
+        return "editAnswer";
+    }
+
+    @PostMapping("/{questionId}/editanswer/{answerId}")
+    public String answerEdited(@ModelAttribute Answer answer,
+                               @PathVariable("questionId") String questionId,
+                               @PathVariable("answerId") String answerId) {
+        answerService.updateAnswer(answerId, answer);
+
+        return "redirect:/questions/{questionId}";
     }
 
 
     @GetMapping("/company/{companyName}")
     public String allQuesionsOfCompany(@PathVariable String companyName, ModelMap modelMap) {
 
-        modelMap.put("questions",questionService.allQuestionsofCompany(companyName));
+        modelMap.put("questions", questionService.allQuestionsofCompany(companyName));
 
         return "QuestionOfCompany";
     }

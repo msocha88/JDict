@@ -1,0 +1,8 @@
+.lgoin-container{
+display:flex;
+flex-diretction: row;
+justify-content: space-around;}
+
+.login-wrapper{
+width:40%;
+}

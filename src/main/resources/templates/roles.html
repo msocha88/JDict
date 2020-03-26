@@ -15,7 +15,7 @@
         <div th:replace="fragments/menu :: menu"/>
     </header>
 
-    <section>
+    <section class="main-section">
         <div>
             <table>
                 <tr>
@@ -26,11 +26,11 @@
                 <tr th:each="role:${roles}">
                     <td th:text="${role.id}"></td>
                     <td th:text="${role.role}"></td>
-                    <td><a th:href="@{'/admin/roles/delete' + ${role.id}">X</a></td>
+                    <td><a th:href="@{'/admin/roles/delete' + ${role.id}}">X</a></td>
                 </tr>
             </table>
 
-            <a th:href="@{/admin/roled/create">Dodaj Rolę</a>
+            <a th:href="@{/admin/roled/create}">Dodaj Rolę</a>
         </div>
 
     </section>

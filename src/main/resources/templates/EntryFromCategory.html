@@ -11,12 +11,12 @@
 
 <header class="page-header">
     <div th:replace="fragments/menu :: menu"/>
-    <div class="category-bar">
+    <section class="category-wrapper">
         <ul th:each="category:${categories}">
             <li class="category"><a th:href="@{'/entry/category/'+${category.id}}" th:text="${category.name}"></a></li>
         </ul>
 
-    </div>
+    </section>
 </header>
 
 <section class="entries">

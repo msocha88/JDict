@@ -13,18 +13,16 @@
     <header class="page-header">
         <div th:replace="fragments/menu :: menu"/>
     </header>
-    <section>
+    <section class="main-section">
 
         <div>
             <table>
                 <tr>
-                    <th>L.p</th>
                     <th>Autor</th>
                     <th>Firma</th>
                     <th>Tytuł</th>
                 </tr>
                 <tr th:each="question:${questions}">
-                    <td th:text="${question.id}"></td>
                     <td th:text="${question.author.userName}"></td>
                     <td th:text="${question.company}"></td>
                     <td><a th:href="@{'/questions/' + ${question.id}}" th:text="${question.title}"></a></td>
