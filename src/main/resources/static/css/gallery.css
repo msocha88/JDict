@@ -1,5 +1,9 @@
+
 section{
 display:flex;}
+
+
+
 
 .entry{
  border-style: solid;
@@ -94,4 +98,11 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-content: flex-start;
+}
+
+
+@media only screen and (max-width: 440px){
+
+main{
+margin-top: 240px;}
 }

@@ -42,7 +42,7 @@
             </div>
             <div class="bottombar">
                 <div th:if="${question.author.userName} == ${#httpServletRequest.remoteUser}">
-                    <a class="btn-botbar" th:href="@{${question.id} +'/deletequestion/'}">Usuń</a> </div>
+                    <a class="btn-botbar" th:href="@{${question.id} +'/deletequestion/'}">Usuń</a>
                 <a class="btn-botbar" th:href="@{${question.id} +'/editquestion/'}">Edytuj</a> </div>
             </div>
         </div>
@@ -64,9 +64,14 @@
         </div>
     </div>
 
+        <div sec:authorize="isAnonymous()">
+            <h4>Aby dodać nową odpowiedź <a href="/login">Zaloguj Się</a></h4>
+        </div>
+
         <div sec:authorize="isAuthenticated()" class="add-answer">
             <h3>Twoja odpowiedź</h3>
             <form th:action="@{'/questions/' + ${question.id}}" th:object="${newAnswer}" method="post">
+                <p>Content: <input type="hidden" th:field="*{content}" /></p>
                 <textarea th:field="*{content}"></textarea>
                 <input type="submit" value="Dodaj odpowiedź">
             </form>
