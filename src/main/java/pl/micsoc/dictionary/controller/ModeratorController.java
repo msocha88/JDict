@@ -28,8 +28,16 @@ public class ModeratorController {
 
         modelMap.put("categories", categoryService.allCategories());
         modelMap.put("newCat", new Category());
+        modelMap.put("insertCategory", new Category());
 
         return "modCategories";
+    }
+
+    @PostMapping("/categories/addnew")
+    public String addNewCategory(@ModelAttribute(name = "insertCategory") Category category) {
+
+        categoryService.save(category);
+        return "redirect:/moderator/categories";
     }
 
     @PostMapping("/categories/change/{id}")

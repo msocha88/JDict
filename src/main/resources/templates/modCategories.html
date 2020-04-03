@@ -37,6 +37,14 @@
             </tr>
         </table>
 
+        <div>
+            <form th:action="@{/moderator/categories/addnew}" th:object="${insertCategory}" method="post">
+                <label>Nowa kategoria:</label>
+                <input type="text" th:field="*{name}">
+                <input type="submit" value="Dodaj">
+            </form>
+        </div>
+
     </section>
 </main>
 
