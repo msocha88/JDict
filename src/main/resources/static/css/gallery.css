@@ -101,7 +101,7 @@ align-content: flex-start;
 }
 
 
-@media only screen and (max-width: 440px){
+@media (max-width: 440px){
 
 main{
 margin-top: 240px;}

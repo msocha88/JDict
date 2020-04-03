@@ -15,7 +15,7 @@
     </header>
     <section class="main-section">
 
-        <form th:action="@{${question.id}+'/editquestion'}" method="post" th:object="${question}">
+        <form th:action="#" method="post" th:object="${question}">
 
             <input type="text" th:field="*{title}" th:value="${question.content}"/>
             <input type="text" th:field="*{company}" th:value="${question.company}"/>
