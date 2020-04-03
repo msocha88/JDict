@@ -6,10 +6,15 @@
 
     <div th:fragment="menu-css">
         <!-- this is header-css -->
+        <meta charset="UTF-8">
         <meta name=viewport content=width=device-width initial-scale=1 maximum-scale=1>
         <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/questions.css}"/>
+
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>
+
     </div>
 </head>
 <body>

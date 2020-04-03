@@ -6,6 +6,8 @@
 
     <div th:replace="fragments/menu :: menu-css"/>
 
+
+
 </head>
 <body>
 
@@ -14,16 +16,28 @@
         <div th:replace="fragments/menu :: menu"/>
     </header>
     <section class="main-section">
+        <div class="form-wrapper">
 
-        <form th:action="#" method="post" th:object="${question}">
+            <form class="editor" th:action="@{'/questions/' + ${question.id} + '/editquestion'}" method="post"
+                  th:object="${question}">
 
-            <input type="text" th:field="*{title}" th:value="${question.content}"/>
-            <input type="text" th:field="*{company}" th:value="${question.company}"/>
+                <div>
+                    <label>Tytuł: </label>
+                    <input type="text" th:field="*{title}" th:value="${question.title}"/>
+                </div>
+                <div>
+                    <label>Firma rekrutująca: </label>
+                    <input type="text" th:field="*{company}" th:value="${question.company}"/>
+                </div>
+                <div>
+                    <label>Treść pytania: </label>
+                    <textarea th:field="*{content}" th:value="${question.content}"
+                              rows="10" cols="30"/>
+                </div>
+                <input type="submit" value="Zmień">
+            </form>
 
-            <textarea th:field="*{content}" th:value="${question.content}"/>
-            <input type="submit" value="Zmień">
-        </form>
-
+        </div>
     </section>
 </main>
 

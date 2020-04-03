@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>404</title>
+    <div th:replace="fragments/menu :: menu-css"/>
 </head>
 <body>
-Kurczaczki nie mogę tego znaleźć!!
+
+
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+    <section class="main-section">
+Strona, którą próbujesz otworzyć nie istnieje. Sprawdź jeszcze raz
+
+
+<a href="javascript:history.back()">Powrót</a>
+
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
 </body>
 </html>

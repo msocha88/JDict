@@ -61,3 +61,14 @@ justify-content: flex-start;
 padding:3px;
 margin: 2px;
 }
+
+.form-wrapper{
+display:flex;
+justify-content: center;}
+
+.editor{
+display: flex;
+justify-content: flex-end;
+flex-direction: column;
+align-content: space-between;
+}

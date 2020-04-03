@@ -98,8 +98,8 @@ public class QAController {
     @GetMapping("/{questionId}/editanswer/{answerId}")
     public String editAnswer(
             @PathVariable("questionId") String questionId,
-            @PathVariable("answerId") String answerId
-            , ModelMap modelMap) {
+            @PathVariable("answerId") String answerId,
+            ModelMap modelMap) {
 
         modelMap.put("answer", answerService.findAnswer(answerId));
 
