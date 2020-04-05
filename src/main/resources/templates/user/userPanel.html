@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jdict</title>
+    <div th:replace="fragments/menu :: menu-css"/>
+</head>
+
+<body>
+
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+    <section class="main-section">
+        <a th:hret="@{'/user/entries/' +${#httpServletRequest.remoteUser}}">Moje wpisy w słowniku</a><br>
+        <a th:hret="@{'/user/questions/'}">Moje pytania rekrutacyjne</a><br>
+        <a th:hret="@{'/user/questions/' +${#httpServletRequest.remoteUser}}">Moje odpowiedzi na pytania</a><br>
+        <a th:href="@{'/user/edituser/'}">Edytuj Dane</a><br>
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+</body>
+</html>
