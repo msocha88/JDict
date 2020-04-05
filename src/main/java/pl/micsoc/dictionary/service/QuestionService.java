@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pl.micsoc.dictionary.model.Answer;
 import pl.micsoc.dictionary.model.Question;
+import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.repository.QuestionRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 
@@ -22,6 +23,9 @@ public class QuestionService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     public void save(Question question) {
 
@@ -79,5 +83,13 @@ public class QuestionService {
         toUpdate.setContent(question.getContent());
 
         questionRepository.save(toUpdate);
+    }
+
+    public List<Question> findQuesionsOfUser(String userName) {
+
+
+        return questionRepository.findAll().stream()
+                .filter(s -> s.getAuthor().equals(userService.currentUser().getUserName()))
+                .collect(Collectors.toList());
     }
 }

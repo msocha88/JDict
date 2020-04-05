@@ -14,28 +14,31 @@
         <div th:replace="fragments/menu :: menu"/>
     </header>
     <section class="main-section">
+        <div>
 
-        <table>
-            <tr>
-                <th>L.p</th>
-                <th>Nazwa</th>
-                <th>Nowa Nazwa</th>
-                <th>Usuń</th>
-            </tr>
-            <tr th:each="category:${categories}">
-                <td th:text="${category.id}"/>
-                <td th:text="${category.name}"/>
-                <td>
-                    <form th:action="@{'/moderator/categories/change/' + ${category.id}}" th:object="${newCat}" method="post">
-                        <input type="text" th:field="*{name}" th:placeholder="|Nowa nazwa dla ${category.name}|">
-                        <input type="submit" value="Zmień">
-                    </form>
-                </td>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th>Nowa Nazwa</th>
+                    <th>Usuń</th>
+                </tr>
+                <tr th:each="category:${categories}">
+                    <td th:text="${category.id}"/>
+                    <td th:text="${category.name}"/>
+                    <td>
+                        <form th:action="@{'/moderator/categories/change/' + ${category.id}}" th:object="${newCat}"
+                              method="post">
+                            <input type="text" th:field="*{name}" th:placeholder="|Nowa nazwa dla ${category.name}|">
+                            <input type="submit" value="Zmień">
+                        </form>
+                    </td>
 
-                <td><a th:href="@{'/categories/delete/' + ${category.id}}">Usuń Kategorię</a></td>
+                    <td><a th:href="@{'/categories/delete/' + ${category.id}}">Usuń Kategorię</a></td>
 
-            </tr>
-        </table>
+                </tr>
+            </table>
+        </div>
 
         <div>
             <form th:action="@{/moderator/categories/addnew}" th:object="${insertCategory}" method="post">
