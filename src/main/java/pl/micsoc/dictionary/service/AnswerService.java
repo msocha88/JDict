@@ -5,10 +5,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pl.micsoc.dictionary.model.Answer;
+import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.repository.AnswerRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AnswerService {
@@ -20,18 +23,11 @@ public class AnswerService {
     AnswerRepository answerRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserService userService;
 
     public void addAnswer(String id, Answer answer) {
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-
-            answer.setAuthor(userRepository.findByUserName(((UserDetails) principal).getUsername()));
-        } else {
-            answer.setAuthor(userRepository.findByUserName(principal.toString()));
-        }
-
+        answer.setAuthor(userService.currentUser());
         answer.setQuestion(questionService.findById(id));
         answer.setDate(new Date(System.currentTimeMillis()));
         answer.setId(null);
@@ -50,7 +46,14 @@ public class AnswerService {
 
     public void updateAnswer(String answerId, Answer answer) {
         Answer newAnswer = answerRepository.findById(Long.parseLong(answerId)).get();
-                newAnswer.setContent(answer.getContent());
+        newAnswer.setContent(answer.getContent());
         answerRepository.save(newAnswer);
+    }
+
+    public List<Answer> allAnswersOfUser(User user) {
+        return answerRepository.findAll()
+                .stream()
+                .filter(s -> s.getAuthor().equals(user))
+                .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,6 @@
 package pl.micsoc.dictionary.service;
 
+import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,14 +30,7 @@ public class QuestionService {
 
     public void save(Question question) {
 
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-
-            question.setAuthor(userRepository.findByUserName(((UserDetails) principal).getUsername()));
-        } else {
-            question.setAuthor(userRepository.findByUserName(principal.toString()));
-        }
+        question.setAuthor(userService.currentUser());
 
         question.setDate((new Date(System.currentTimeMillis())));
 
@@ -67,7 +61,7 @@ public class QuestionService {
     public List<Question> allQuestionsofCompany(String companyName) {
         return questionRepository.findAll()
                 .stream()
-                .filter(s-> s.getCompany().equals(companyName))
+                .filter(s -> s.getCompany().equals(companyName))
                 .collect(Collectors.toList());
     }
 
@@ -85,11 +79,9 @@ public class QuestionService {
         questionRepository.save(toUpdate);
     }
 
-    public List<Question> findQuesionsOfUser(String userName) {
-
-
+    public List<Question> findQuesionsOfUser(User user) {
         return questionRepository.findAll().stream()
-                .filter(s -> s.getAuthor().equals(userService.currentUser().getUserName()))
+                .filter(s -> s.getAuthor().equals(user))
                 .collect(Collectors.toList());
     }
 }

@@ -30,7 +30,7 @@
                 <h3>Treść pytania:</h3>
                 <div class="content" th:utext="${question.content}"></div>
             </div>
-            <div class="bottombar">Odpowiedzi: <span th:text="${#lists.size(questions)}"/></div>
+            <div class="bottombar">Odpowiedzi: <span th:text="${#lists.size(question.answers)}"/></div>
         </div>
 
     </section>

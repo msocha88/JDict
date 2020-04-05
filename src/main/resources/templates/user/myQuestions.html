@@ -14,7 +14,24 @@
         <div th:replace="fragments/menu :: menu"/>
     </header>
     <section class="main-section">
-        Moje pytania
+        <div>
+            <div class="question" th:each="question :${questions}">
+                <div class="topbar">
+                    <div class="author"><label>Autor: </label><span th:text="${question.author.userName}"/></div>
+                    <div class="date" th:text="${question.date}"></div>
+                </div>
+                <div class="quest-main">
+                    <div>
+                        <label>Tytuł: </label>
+                        <a class="title" th:href="@{'/questions/' + ${question.id}}" th:text="${question.title}"/>
+                    </div>
+                    <h3>Treść pytania:</h3>
+                    <div class="content" th:utext="${question.content}"></div>
+                </div>
+                <div class="bottombar">Odpowiedzi: <span th:text="${#lists.size(question.answers)}"/></div>
+            </div>
+        </div>
+    </section>
     </section>
 </main>
 

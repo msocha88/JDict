@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.micsoc.dictionary.exceptions.WrongUserException;
 import pl.micsoc.dictionary.model.User;
+import pl.micsoc.dictionary.service.AnswerService;
 import pl.micsoc.dictionary.service.EntryService;
 import pl.micsoc.dictionary.service.QuestionService;
 import pl.micsoc.dictionary.service.UserService;
@@ -28,27 +29,19 @@ public class UserController {
     @Autowired
     private QuestionService questionService;
 
-    @GetMapping("/panel/")
-    public String userPanel(@PathVariable String name, ModelMap modelMap) throws WrongUserException{
-        if (userService.checkUser(name)) {
-            modelMap.put("user", userService.findUserByUserName(name));
-            modelMap.put("alternativeUser", new User());
-        } else {
-            throw new WrongUserException();
-        }
+    @Autowired
+    private AnswerService answerService;
+
+    @GetMapping("/panel")
+    public String userPanel() {
 
         return "user/userPanel";
     }
 
-    @GetMapping("/entries/{name}")
-    public String userEntries(@PathVariable String name, ModelMap modelMap) throws WrongUserException {
+    @GetMapping("/entries")
+    public String userEntries(ModelMap modelMap) {
 
-
-        if (userService.checkUser(name)) {
-        modelMap.put("entries", entryService.findEntriesFromUser(userService.findUserByUserName(name)));
-        } else {
-            throw new WrongUserException();
-        }
+        modelMap.put("entries", entryService.findEntriesFromUser(userService.currentUser()));
 
         return "user/myEntries";
     }
@@ -56,9 +49,15 @@ public class UserController {
     @GetMapping("/myquestions")
     public String usersQuestions(ModelMap modelMap) {
 
-        modelMap.put("questions", questionService.findQuesionsOfUser(userService.currentUser().getUserName()));
+        modelMap.put("questions", questionService.findQuesionsOfUser(userService.currentUser()));
 
         return "user/myQuestions";
     }
 
+    @GetMapping("/myanswers")
+    public String usersAnswers(ModelMap modelMap) {
+        modelMap.put("answers", answerService.allAnswersOfUser(userService.currentUser()));
+
+        return "user/myAnswers";
+    }
 }
