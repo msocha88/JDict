@@ -26,14 +26,14 @@ public class QAController {
 
         modelMap.put("questions", questionService.allQuestions());
 
-        return "questions";
+        return "questions/questions";
     }
 
     @GetMapping("/add")
     public String addQuestion(ModelMap modelMap) {
 
         modelMap.put("question", new Question());
-        return "addQuestion";
+        return "questions/addQuestion";
     }
 
     @PostMapping("/add")
@@ -51,7 +51,7 @@ public class QAController {
         Answer answer = new Answer();
         modelMap.put("newAnswer", answer);
 
-        return "question";
+        return "questions/question";
     }
 
     @PostMapping("/{id}")
@@ -75,7 +75,7 @@ public class QAController {
 
         modelMap.put("question", questionService.findById(id));
 
-        return "editQuestion";
+        return "questions/editQuestion";
     }
 
     @PostMapping("/{questionId}/editquestion")
@@ -103,7 +103,7 @@ public class QAController {
 
         modelMap.put("answer", answerService.findAnswer(answerId));
 
-        return "editAnswer";
+        return "questions/editAnswer";
     }
 
     @PostMapping("/{questionId}/editanswer/{answerId}")
@@ -121,7 +121,7 @@ public class QAController {
 
         modelMap.put("questions", questionService.allQuestionsofCompany(companyName));
 
-        return "QuestionOfCompany";
+        return "questions/questionsOfCompany";
     }
 
 

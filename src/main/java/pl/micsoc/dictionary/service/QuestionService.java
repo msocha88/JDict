@@ -1,9 +1,6 @@
 package pl.micsoc.dictionary.service;
 
-import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pl.micsoc.dictionary.model.Answer;
 import pl.micsoc.dictionary.model.Question;

@@ -25,7 +25,7 @@ public class AdminController {
 
     @GetMapping()
     public String adminPanel() {
-        return "adminPanel";
+        return "admin/adminPanel";
     }
 
     @GetMapping("/users")
@@ -35,7 +35,7 @@ public class AdminController {
         modelMap.put("roles", roleService.listAll());
         modelMap.put("newRole", new Role());
 
-        return "adminUserList";
+        return "admin/adminUserList";
     }
 
 
@@ -46,7 +46,7 @@ public class AdminController {
         Set<Role> roles = new HashSet<>(roleService.findById(role.getId()));
 
         user.setRoles(roles);
-        userService.updateUser(user);
+        userService.updateUserRoles(user);
         return "redirect:/admin/users";
     }
 
@@ -62,7 +62,7 @@ public class AdminController {
     public String allRoles(ModelMap modelMap) {
         modelMap.put("roles", roleService.listAll());
 
-        return "roles";
+        return "admin/roles";
     }
 
     @GetMapping("/roles/delete/{id}")
@@ -77,7 +77,7 @@ public class AdminController {
     public String createRole(ModelMap modelMap) {
 
         modelMap.put("role", new Role());
-        return "createRole";
+        return "admin/createRole";
     }
 
     @PostMapping("/roles/create")

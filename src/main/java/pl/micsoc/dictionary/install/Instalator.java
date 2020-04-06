@@ -41,7 +41,6 @@ public class Instalator implements CommandLineRunner {
         if (!userRepository.findAll().stream().anyMatch(x -> x.getEmail().equals(user1.getEmail()))
         ) {
             user1.setName("Michał");
-            user1.setLastName("Socha");
             user1.setRoles(roleService.allRoles());
             user1.setPassword("*****");
             user1.setActive(true);

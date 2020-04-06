@@ -20,7 +20,7 @@ public class ModeratorController {
     @GetMapping("/")
     public String modPanel() {
 
-        return "modPanel";
+        return "moderator/modPanel";
     }
 
     @GetMapping("/categories")
@@ -30,7 +30,7 @@ public class ModeratorController {
         modelMap.put("newCat", new Category());
         modelMap.put("insertCategory", new Category());
 
-        return "modCategories";
+        return "moderator/modCategories";
     }
 
     @PostMapping("/categories/addnew")

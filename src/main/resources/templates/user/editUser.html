@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj swoje dane</title>
+    <div th:replace="fragments/menu :: menu-css"/>
+</head>
+
+<body>
+
+<main>
+    <header class="page-header">
+        <div th:replace="fragments/menu :: menu"/>
+    </header>
+    <section class="main-section">
+
+        <h3> Aby zmienić swoje dane wpisz nowe w odpowiednie pola. Pola pozostawione puste nie będą zmienione</h3>
+
+        <h2 th:text="${user.userName}"></h2>
+        <div class="details">
+<h3>Zmiana danych:</h3>
+            <form th:action="@{/user/edituser/}" th:object="${alternate}" method="post">
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                               class="validation-message"></label>
+                        <label>Imię:</label>
+                        <input type="text" th:field="*{name}" th:placeholder="${user.name}"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>E-mail: </label>
+                        <input type="text" th:field="*{email}" th:placeholder="${user.email}"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Edytuj</button>
+                    </div>
+                </div>
+
+
+            </form>
+            <form th:action="@{/user/changepassword}" th:object="${passChanger}" method="post">
+                <label>Podaj stare hasło:<br></label><input type="password" th:field="*{oldPassword}">
+                <label>Podaj nowe hasło:<br></label><input type="password" th:field="*{newPassword}">
+                <label>Potwierdź nowe hasło:<br></label><input type="password" th:field="*{confirmPassword}">
+                <input type="submit" value="Zmień hasło"/>
+            </form>
+        </div>
+                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+    </section>
+</main>
+
+<footer class="page-footer">
+    <div th:replace="fragments/footer :: footer"/>
+</footer>
+</body>
+</html>

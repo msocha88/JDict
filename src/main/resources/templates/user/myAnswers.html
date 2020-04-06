@@ -14,7 +14,28 @@
         <div th:replace="fragments/menu :: menu"/>
     </header>
     <section class="main-section">
-        
+        <div class="answers">
+
+            <h2>Odpowiedzi: </h2>
+            <div class="answer" th:each="answer: ${answers}">
+
+                <div class="topbar">
+                    <div class="ans-author"><label>Autor: </label><span th:text="${answer.author.userName}"/></div>
+                    <div class="ans-date" th:text="${answer.date}"></div>
+                </div>
+                <div class="questionbar">
+                    <div><label>Pytanie: </label>
+                    <a th:href="@{'/questions/'+ ${answer.question.id}}" th:text="${answer.question.title}">Pytanie</a>
+                    </div>
+                </div>
+                <div class="ans-content" th:utext="${answer.content}"></div>
+                <div class="bottombar">
+                    <div th:if="${answer.author.userName} == ${#httpServletRequest.remoteUser}">
+                        <a class="btn-botbar" th:href="@{'/questions/' +${answer.question.id} +'/deleteanswer/' + ${answer.id}}">Usuń</a> </div>
+                    <a class="btn-botbar" th:href="@{'/questions/'+${answer.question.id} +'/editanswer/' + ${answer.id}}">Edytuj</a> </div>
+            </div>
+        </div>
+        </div>
     </section>
 </main>
 

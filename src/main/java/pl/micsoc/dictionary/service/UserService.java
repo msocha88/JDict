@@ -69,7 +69,7 @@ public class UserService {
 
     }
 
-    public void updateUser(User user) {
+    public void updateUserRoles(User user) {
         userRepository.save(user);
     }
 
@@ -83,10 +83,30 @@ public class UserService {
         }
     }
 
-    public User currentUser(){
+    public User currentUser() {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         return findUserByUserName(((UserDetails) principal).getUsername());
+    }
+
+    public void updateCurrentUserData(User user) {
+
+        User currentUser = currentUser();
+
+        if (user.getEmail() != null && !user.getEmail().equals("")) {
+            currentUser.setEmail(user.getEmail());
         }
+        if (user.getName() != null && !user.getName().equals("")) {
+            currentUser.setName(user.getName());
+        }
+        if (user.getPassword() != null && !user.getPassword().equals("")) {
+            currentUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        userRepository.save(currentUser);
+    }
+
+    public boolean checkPassword(String oldPassword) {
+        return bCryptPasswordEncoder.matches(oldPassword,currentUser().getPassword());
+    }
 }

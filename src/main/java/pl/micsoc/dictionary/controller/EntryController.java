@@ -36,7 +36,7 @@ public class EntryController {
         modelMap.put("entry", new Entry());
         modelMap.put("categories", categoryService.allCategories());
 
-        return "entryform";
+        return "entry/entryform";
     }
 
 
@@ -57,7 +57,7 @@ public class EntryController {
         }
         entryRepository.save(entry);
 
-        return "entryadded";
+        return "entry/entryadded";
     }
 
 
@@ -75,7 +75,7 @@ public class EntryController {
             modelMap.put("user", userRepository.findByUserName(principal.toString()));
         }
 
-        return "gallery";
+        return "entry/allEntries";
     }
 
     @GetMapping("/delete/{id}")
@@ -96,7 +96,7 @@ public class EntryController {
         modelMap.put("entry", entryRepository.findEntryById(Integer.valueOf(id)));
         modelMap.put("categories", categoryService.allCategories());
 
-        return "editEntry";
+        return "entry/editEntry";
     }
 
     @PostMapping("/edit/{id}")
@@ -122,6 +122,6 @@ public class EntryController {
         modelMap.put("entries", entryService.findByCategoryId(longid));
 
 
-        return "EntryFromCategory";
+        return "entry/entryFromCategory";
     }
 }
