@@ -33,6 +33,7 @@ public class QAController {
     public String addQuestion(ModelMap modelMap) {
 
         modelMap.put("question", new Question());
+
         return "questions/addQuestion";
     }
 
@@ -40,6 +41,7 @@ public class QAController {
     public String addedQuestion(@ModelAttribute("question") Question question) {
 
         questionService.save(question);
+
         return "redirect:/questions/";
     }
 
@@ -48,8 +50,7 @@ public class QAController {
 
         modelMap.put("question", questionService.findById(id));
         modelMap.put("answers", questionService.allAnswersOfQuestion(id));
-        Answer answer = new Answer();
-        modelMap.put("newAnswer", answer);
+        modelMap.put("newAnswer", new Answer());
 
         return "questions/question";
     }
@@ -110,6 +111,7 @@ public class QAController {
     public String answerEdited(@ModelAttribute Answer answer,
                                @PathVariable("questionId") String questionId,
                                @PathVariable("answerId") String answerId) {
+
         answerService.updateAnswer(answerId, answer);
 
         return "redirect:/questions/{questionId}";

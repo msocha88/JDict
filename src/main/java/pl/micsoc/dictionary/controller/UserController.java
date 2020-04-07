@@ -80,9 +80,12 @@ public class UserController {
 
         if (!userService.checkPassword(passwordChanger.getOldPassword())) {
             modelMap.put("wrongPassword", "Podane hasło nie jest poprawne");
+
         } else if (!passwordChanger.getNewPassword().equals(passwordChanger.getConfirmPassword())) {
             modelMap.put("wrongConfirm", "Podane nowe hasła różnią się od siebie");
+
         } else {
+
             User user = new User();
             user.setPassword(passwordChanger.getNewPassword());
             userService.updateCurrentUserData(user);

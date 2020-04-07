@@ -49,4 +49,6 @@ public class Entry {
     public int hashCode() {
         return Objects.hash(id, title, content, date, category);
     }
+
+
 }

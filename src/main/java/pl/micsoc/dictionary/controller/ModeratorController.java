@@ -43,9 +43,7 @@ public class ModeratorController {
     @PostMapping("/categories/change/{id}")
     public String changeCategory(@ModelAttribute("newCat") Category category, @PathVariable String id) {
 
-
-
-        categoryService.update(id,category);
+        categoryService.update(id, category);
 
         return "redirect:/moderator/categories";
     }

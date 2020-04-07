@@ -11,12 +11,16 @@ import pl.micsoc.dictionary.repository.EntryRepository;
 import pl.micsoc.dictionary.repository.UserRepository;
 import pl.micsoc.dictionary.service.CategoryService;
 import pl.micsoc.dictionary.service.EntryService;
+import pl.micsoc.dictionary.service.UserService;
 
 import java.sql.Date;
 
 @Controller
 @RequestMapping("/entry")
 public class EntryController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     UserRepository userRepository;
@@ -43,19 +47,7 @@ public class EntryController {
     @PostMapping("/add")
     public String entryAdded(@ModelAttribute("entry") Entry entry) {
 
-        entry.setCategory(categoryService.findFromThymeleaf(entry.getSelectedCategory()));
-        entry.setDate(new Date(System.currentTimeMillis()));
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            entry.setUserEntry(userRepository.findByUserName(((UserDetails) principal).getUsername()));
-
-        } else {
-            entry.setUserEntry(userRepository.findByUserName(principal.toString()));
-
-        }
-        entryRepository.save(entry);
+        entryService.addEntry(entry);
 
         return "entry/entryadded";
     }
@@ -66,21 +58,13 @@ public class EntryController {
 
         modelMap.put("categories", categoryService.allCategories());
         modelMap.put("entries", entryRepository.findAll());
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-
-            modelMap.put("user", userRepository.findByUserName(((UserDetails) principal).getUsername()));
-        } else {
-            modelMap.put("user", userRepository.findByUserName(principal.toString()));
-        }
+        modelMap.put("user", userService.currentUser());
 
         return "entry/allEntries";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteEntry(@PathVariable String id) {
-
 
 
         entryRepository.delete(entryRepository.findEntryById(Integer.valueOf(id)));

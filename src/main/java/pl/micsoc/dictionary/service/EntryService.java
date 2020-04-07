@@ -6,6 +6,7 @@ import pl.micsoc.dictionary.model.Entry;
 import pl.micsoc.dictionary.model.User;
 import pl.micsoc.dictionary.repository.EntryRepository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,13 @@ public class EntryService {
 
     @Autowired
     EntryRepository entryRepository;
+
+    @Autowired
+    CategoryService categoryService;
+
+    @Autowired
+    UserService userService;
+
 
     public List<Entry> findEntriesFromUser(User user) {
 
@@ -40,5 +48,13 @@ public class EntryService {
             }
         }
         return list;
+    }
+
+    public void addEntry(Entry entry) {
+        entry.setCategory(categoryService.findFromThymeleaf(entry.getSelectedCategory()));
+        entry.setDate(new Date(System.currentTimeMillis()));
+        entry.setUserEntry(userService.currentUser());
+
+        entryRepository.save(entry);
     }
 }
